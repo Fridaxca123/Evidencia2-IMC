@@ -1,7 +1,16 @@
 # Evidencia2-IMC: Generación y limpieza de gramática
 **Frida Xcaret Vargas Trejo - A01707168**
 ## Descripción
+EL italiano es una lengua romance procedente del latín hablado, pertenece a la familia de las lenguas Indo-Europeas. Es el idioma oficial en Italia, Vaticano y San Marino. Se calcula que, en el año 2006, unos 64 millones de ciudadanos europeos hablaban el italiano como lengua materna, y 14,7 millones como segunda o tercera lengua. 
 
-El lenguaje que yo elegi es el idioma italiano. El Italiano es una lengua romance originaria del sur de Europa. Esta gramática modelara frases simples de este idioma con el formato SUJETO + VERBO + OBJETO.
+## Estructura
+Para mi modelo estare utilizando una estructura de sujeto + verbo + predicado. El italiano se distingue por como el español tener distintas conjugaciones, donde e
+
+Ejemplo: La donna legge un libro 
+## Gramatica
+La gramatica en la teoria de computacion se refiere a un sistema formal que define cómo se construyen las cadenas (oraciones) en un lenguaje. Desempeña un papel crucial en la determinación de la corrección sintáctica de los lenguajes y constituye la base para el análisis sintáctico y la interpretación de lenguajes de programación, lenguajes naturales y otros sistemas formales. En el contexto de los lenguajes de programación, un analizador sintáctico LL(1) es un método popular para el análisis sintáctico. «LL» se refiere a un escaneo de izquierda a derecha de la entrada con un solo símbolo de búsqueda anticipada. Los analizadores sintácticos LL(1) son particularmente eficaces porque son fáciles de implementar, no requieren retroceso y construyen el árbol sintáctico de arriba a abajo. Esto los convierte en la opción ideal para comprobar si una cadena se ajusta a una gramática dada de forma sencilla y eficiente.
 
 ## Referencias
+- C. (2003, September 15). *Lengua romance*. Wikipedia.org; Wikimedia Foundation, Inc. [https://es.wikipedia.org/wiki/Idioma_italiano](https://es.wikipedia.org/wiki/Idioma_italiano)
+- Introduction To Grammar in Theory of Computation. (2021, January 16). GeeksforGeeks. [https://www.geeksforgeeks.org/introduction-to-grammar-in-theory-of-computation/]
+- Construction of LL(1) Parsing Table. (2019, February 27). GeeksforGeeks. [https://www.geeksforgeeks.org/construction-of-ll1-parsing-table/]
