@@ -24,7 +24,7 @@ Para usar el plural utilizare las siguientes reglas:
   
 ## Modelo 
 
-** Pronombres y Sustantivos **
+**Sujeto (Pronombre + Sustantivo)**
 * le mani: manos
 * le sedie: sillas
 * le finestre: ventanas
@@ -36,11 +36,23 @@ Para usar el plural utilizare las siguientes reglas:
 * i gatti: gatos
 * i fiori: flores
 
-Verbo: 
-cantano: cantan
-corrono: corren
-saltano: saltan
+**Verbo:**
+* cantano: cantan
+* corrono: corren
+* saltano: saltan
 
+**Predicado**
+**Adverbios**
+* lentamente: lentamente
+* presto: pronto
+* spesso: a menudo
+**Adjetivos**
+* grandi: grandes
+* veloci: rápidos
+* luminosi: brillantes
+**Conjunciones**
+* ma: pero
+* perché: porque
 ## Gramatica
 La gramatica en la teoria de computacion se refiere a un sistema formal que define cómo se construyen las cadenas (oraciones) en un lenguaje. Desempeña un papel crucial en la determinación de la corrección sintáctica de los lenguajes y constituye la base para el análisis sintáctico y la interpretación de lenguajes de programación, lenguajes naturales y otros sistemas formales. En el contexto de los lenguajes de programación, un analizador sintáctico LL(1) es un método popular para el análisis sintáctico. «LL» se refiere a un escaneo de izquierda a derecha de la entrada con un solo símbolo de búsqueda anticipada. Los analizadores sintácticos LL(1) son particularmente eficaces porque son fáciles de implementar, no requieren retroceso y construyen el árbol sintáctico de arriba a abajo. Esto los convierte en la opción ideal para comprobar si una cadena se ajusta a una gramática dada de forma sencilla y eficiente.
 
