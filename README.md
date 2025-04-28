@@ -24,17 +24,17 @@ Para usar el plural utilizare las siguientes reglas:
   
 ## Modelo 
 
-Pronombres y Sustantivos 
-i bambini: niños
-i cani: perros
-i gatti: gatos
-gli elefanti: elefantes
-i fiori: flores
-le mani: manos
-le sedie: sillas
-le finestre: ventanas
-le mele: manzanas
-le stelle: estrellas
+** Pronombres y Sustantivos **
+* le mani: manos
+* le sedie: sillas
+* le finestre: ventanas
+* le mele: manzanas
+* le stelle: estrellas
+* gli elefanti: elefantes
+* i bambini: niños
+* i cani: perros
+* i gatti: gatos
+* i fiori: flores
 
 Verbo: 
 cantano: cantan
