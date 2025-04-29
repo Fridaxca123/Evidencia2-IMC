@@ -82,7 +82,7 @@ Conjunción → 'e' | 'o'
 
 Esta gramatica cuenta con ambiguedad y recursion a la izquierda, lo que hace que exista mas de una manera de implementacion creando mas de un arbol. Por ejemplo como para la oración "i cani e i gatti e gli elefanti corrono" (el elefante, el gato y el perro corren) se crean dos arboles.
 
-En este caso la recursión a la izquierda se presnta cuando una regla esta seguida por el mismo no terminal:  S ⇒ S | a | b, esto no es deseabe ya que puede causar un loop infinito. Para el caso de esta oracion la recursion a la izquierda estan en **Oracion -> Oracion Conjuncion Oracion**, y que esta permitiendo que un no terminal (Oracion) se derive a si mismo. 
+En este caso la recursión a la izquierda se presenta cuando una regla esta seguida por el mismo no terminal:  S ⇒ S | a | b, esto no es deseabe ya que puede causar un loop infinito. Para el caso de esta oracion la recursion a la izquierda estan en **Oracion -> Oracion Conjuncion Oracion**, y que esta permitiendo que un no terminal (Oracion) se derive a si mismo. 
 
 Por otro lado la ambiguedad surge cuando un string puede ser implementado por mas de un arbol. En este caso **Sujeto → Sujeto Conjunción Sujeto** permite agrupar los sujetos de mas de una forma (i cani e i gatti) e gli elefanti - i cani e (i gatti e gli elefanti). Lo anterior también se puede observar en la imagen la cual muestra dos arboles con implementacion distinta para el mismo string. 
 
@@ -90,7 +90,7 @@ Por otro lado la ambiguedad surge cuando un string puede ser implementado por ma
 
 **Eliminar la ambiguedad**
 
-Para eliminar la ambigüedad, estoy usando estados intermedios en cada línea que se llama a sí misma dos veces en la misma opción,estoy utilizando VP y NP. Por ejemplo para Oracion → Oracion Conjuncion Oracion estoy usando S →  S Conjuncion NP VP
+Para eliminar la ambigüedad, estoy usando  estados intermedios y producciones que indican una precedencia en cada línea que se llama a sí misma dos veces en la misma reglas. Por ejemplo para la ambuiguedad que esta afectando a la oracion **Sujeto → Sujeto Conjunción Sujeto**  estoy añadiendo un **Sujeto -> Pronombre Sustantivo | Sujeto Conjuncion Sujeto2** y **Sujeto2 -> Pronombre Sustantivo**
 
 ```
 S -> S Conjuncion NP VP | NP VP
