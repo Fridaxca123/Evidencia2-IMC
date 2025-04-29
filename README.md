@@ -91,7 +91,6 @@ Esta gramatica cuenta con ambiguedad y recursion a la izquierda, lo que hace que
 Para eliminar la ambigüedad, necesitamos usar estados intermedios en cada línea que se llama a sí misma dos veces en la misma opción, por ejemplo, en Oración → Oración Conjunción Oración| Sujeto Predicado | *otros estados*, que se resolvería con el estado intermedio Oracion -> S S -> *otros estados*. También añadí estos estados en  VP y NP.
 
 ```
-Oracion -> S
 S -> S Conjuncion NP VP | NP VP
 NP -> Pronombre Sustantivo | NP Conjuncion NP
 VP -> Verbo | Verbo Adjetivo | Verbo Adverbio
@@ -99,7 +98,6 @@ VP -> Verbo | Verbo Adjetivo | Verbo Adverbio
 **Eliminar la recursion izquierda**
 Para eliminar la recursión por la izquierda, necesitamos deshacernos de las aquellos no terminales que se derivan a si mismos:
 ```
-Oracion -> S
 S -> NPLista VP
 NPLista -> NP NPListaRest
 NPListaRest -> Conjuncion NP NPListaRest | 
@@ -128,8 +126,10 @@ La jerarquía de Chomsky fue propuesta por el lingüista y científico computaci
 
 Esta jerarquía tiene cuatro niveles, desde los más generales (más poderosos, pero menos estructurados) hasta los más restringidos (más estructurados, pero con menor poder expresivo). 
 
-La gramatica que presento es de **tipo 2**, es decir una gramatica libre de contexto. Todos tienen un único no terminal en el lado izquierdo y no dependen del contexto en el que aparece ese símbolo para aplicarse. Cada producción tiene la forma A → α, donde A es un no terminal y α es una cadena de terminales y no terminales. 
+La gramatica antes de eliminar (recursion izquierda y ambiguedad) y después  es de **tipo 2**, es decir una gramatica libre de contexto. Todos tienen un único no terminal en el lado izquierdo y no dependen del contexto en el que aparece ese símbolo para aplicarse. Cada producción tiene la forma A → α, donde A es un no terminal y α es una cadena de terminales y no terminales. 
 
+## Complejidad 
+La complejidad de 
 
 ## Referencias
 - C. (2003, September 15). *Lengua romance*. Wikipedia.org; Wikimedia Foundation, Inc. [https://es.wikipedia.org/wiki/Idioma_italiano](https://es.wikipedia.org/wiki/Idioma_italiano)
