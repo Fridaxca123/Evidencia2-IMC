@@ -2,7 +2,6 @@ import nltk
 from nltk import CFG
 
 gramatica = CFG.fromstring("""
-Oracion -> S
 S -> NPLista VP
 NPLista -> NP NPListaRest
 NPListaRest -> Conjuncion NP NPListaRest | 
