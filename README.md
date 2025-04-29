@@ -60,7 +60,8 @@ La gramática en teoría de la computación es un sistema que define cómo se fo
 Un analizador sintáctico LL(1) es una forma de leer una cadena de izquierda a derecha, usando solo un símbolo de adelanto. Es fácil de implementar, no necesita retroceder y construye el árbol de análisis de arriba hacia abajo, lo que lo hace rápido y eficiente para verificar si una cadena cumple con una gramática.
 
 **Gramatica Inicial**
-``` Oración → Oración Conjunción Oración| Sujeto Predicado| Oración Adverbio
+```
+Oración → Oración Conjunción Oración| Sujeto Predicado| Oración Adverbio
                 
 Predicado → Verbo Complemento | Verbo Adjetivo| Verbo Adverbio| Predicado Conjunción Predicado
    
