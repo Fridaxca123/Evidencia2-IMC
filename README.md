@@ -78,7 +78,8 @@ Adverbio → 'sempre' | 'presto' | 'spesso'
 
 Adjetivo → 'grandi' | 'veloci' | 'belli'
 
-Conjunción → 'e' | 'o'```
+Conjunción → 'e' | 'o'
+```
 
 
 ## Referencias
