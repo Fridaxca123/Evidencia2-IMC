@@ -25,46 +25,60 @@ Para usar el plural utilizare las siguientes reglas:
 ## Modelo 
 
 **Sujeto (Pronombre + Sustantivo)**
-* le mani: manos
-* le sedie: sillas
-* le finestre: ventanas
-* le mele: manzanas
-* le stelle: estrellas
-* gli elefanti: elefantes
-* i bambini: niños
-* i cani: perros
-* i gatti: gatos
-* i fiori: flores
+* le mani: las manos
+* le sedie: las sillas
+* le finestre: las ventanas
+* le mele: las manzanas
+* le stelle: las estrellas
+* gli elefanti: los elefantes
+* i bambini: los niños
+* i cani: los perros
+* i gatti: los gatos
+* i fiori: las flores
 
 **Verbo:**
-* cantano: cantan
+* sono: son
 * corrono: corren
 * saltano: saltan
 
-**Predicado**
-
 **Adverbios**
-* lentamente: lentamente
-* presto: pronto
+* sempre: siempre 
+* presto: nunca
 * spesso: a menudo
 
 **Adjetivos**
 * grandi: grandes
 * veloci: rápidos
-* luminosi: brillantes
+* belli: bonitos
 
 **Conjunciones**
-* o: or 
-* e: and
+* o: o 
+* e: y
 
 ## Gramatica
 La gramática en teoría de la computación es un sistema que define cómo se forman las cadenas de un lenguaje. Sirve para verificar si las oraciones están bien construidas y es la base para analizar lenguajes de programación y naturales.
 Un analizador sintáctico LL(1) es una forma de leer una cadena de izquierda a derecha, usando solo un símbolo de adelanto. Es fácil de implementar, no necesita retroceder y construye el árbol de análisis de arriba hacia abajo, lo que lo hace rápido y eficiente para verificar si una cadena cumple con una gramática.
 
 **Gramatica Inicial**
-```python
-def hola():
-    print("Hola mundo")
+``` Oración → Oración Conjunción Oración| Sujeto Predicado| Oración Adverbio
+                
+Predicado → Verbo Complemento | Verbo Adjetivo| Verbo Adverbio| Predicado Conjunción Predicado
+   
+Complemento → Sustantivo | Adjetivo | Complemento Conjunción Complemento
+
+Sujeto → PronombrePlural SustantivoPlural| Sujeto Conjunción Sujeto                 
+
+PronombrePlural → 'le' | 'gli' | 'i'
+
+SustantivoPlural → 'mani' | 'sedie' | 'finestre' | 'mele'  | 'stelle' | 'elefanti' | 'bambini'  | 'cani' | 'gatti' | 'fiori'
+
+Verbo → 'sono' | 'corrono' | 'saltano'
+
+Adverbio → 'sempre' | 'presto' | 'spesso'
+
+Adjetivo → 'grandi' | 'veloci' | 'belli'
+
+Conjunción → 'e' | 'o'```
 
 
 ## Referencias
