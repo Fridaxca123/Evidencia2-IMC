@@ -108,29 +108,36 @@ Complemento2 ->  Adjetivo
 Sujeto -> Pronombre Sustantivo | Sujeto Conjuncion Sujeto2               
 
 Sujeto2 -> Pronombre Sustantivo 
-                           
-Pronombre -> 'le' | 'gli' | 'i'
-
-Sustantivo -> 'mani' | 'sedie' | 'finestre' | 'mele' | 'stelle' | 'elefanti' | 'bambini' | 'cani' | 'gatti' | 'fiori'
-
-Verbo -> 'sono' | 'corrono' | 'saltano'
-
-Adverbio -> 'sempre' | 'presto' | 'spesso'
-
-Adjetivo -> 'grandi' | 'veloci' | 'belli'
-
-Conjuncion -> 'e' | 'o'
 ```
 **Eliminar la recursion izquierda**
-Para eliminar la recursión por la izquierda, necesitamos deshacernos de las aquellos no terminales que se derivan a si mismos:
+Para eliminar la recursión por la izquierda, necesitamos deshacernos de las aquellos no terminales que se derivan a si mismos utilize el siguiente formato
+S ⇒ S a | S b | c | d 
+S ⇒ cS' | dS'
+S' ⇒ ε | aS' | bS'
 ```
-S -> NPLista VP
-NPLista -> NP NPListaRest
-NPListaRest -> Conjuncion NP NPListaRest | 
-NP -> Pronombre Sustantivo
-VP -> Verbo VPmod
-VPmod -> Adjetivo | Adverbio |
+Oracion -> Sujeto Predicado OracionP| Adverbio OracionP
+                           
+OracionP -> Conjuncion Oracion2 OracionP| ε
 
+Oracion2 -> Sujeto Predicado | Oracion Adverbio
+
+Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP
+                           
+PredicadoP -> Conjuncion Predicado2 PredicadoP | ε
+
+Predicado2 -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio
+
+Complemento -> Adjetivo ComplementoP
+                           
+ComplementoP -> Conjuncion Complemento2 ComplementoP | ε
+
+Complemento2 -> Adjetivo
+
+Sujeto -> Pronombre Sustantivo SujetoP
+                           
+SujetoP -> Conjuncion Sujeto2 SujetoP | ε
+
+Sujeto2 -> Pronombre Sustantivo
 ```
 ## Pruebas 
 **Correctas**
