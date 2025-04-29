@@ -4,13 +4,13 @@
 EL italiano es una lengua romance procedente del latín hablado, pertenece a la familia de las lenguas Indo-Europeas. Es el idioma oficial en Italia, Vaticano y San Marino. Se calcula que, en el año 2006, unos 64 millones de ciudadanos europeos hablaban el italiano como lengua materna, y 14,7 millones como segunda o tercera lengua. 
 
 ## Estructura
-Para mi modelo estare utilizando una estructura de sujeto + verbo + predicado. El italiano se distingue por como el español tener distintas conjugaciones, donde los pronombres, sustantivos y verbos deben coincidir en género (masculino o femenino) y número (singular o plural).
+Para mi modelo estare utilizando una estructura de sujeto + verbo + predicado, tambien se podran usar conjunciónes para alargar las oraciones. El italiano se distingue por como el español tener distintas conjugaciones, donde los pronombres, sustantivos y verbos deben coincidir en género (masculino o femenino) y número (singular o plural).
 
 Ejemplo: La donna legge un libro 
-Sujeto: La donna 
-Verbo: legge 
-Predicado: un libro
-Plural: Le donne leggono un libro 
+* Sujeto: La donna 
+* Verbo: legge 
+* Predicado: un libro
+* Plural: Le donne leggono un libro 
 
 ## Plural 
 Para usar el plural utilizare las siguientes reglas:
@@ -56,9 +56,7 @@ Para usar el plural utilizare las siguientes reglas:
 * e: y
 
 ## Gramatica
-La gramática en teoría de la computación es un sistema que define cómo se forman las cadenas de un lenguaje. Sirve para verificar si las oraciones están bien construidas y es la base para analizar lenguajes de programación y naturales.
-Un analizador sintáctico LL(1) es una forma de leer una cadena de izquierda a derecha, usando solo un símbolo de adelanto. Es fácil de implementar, no necesita retroceder y construye el árbol de análisis de arriba hacia abajo, lo que lo hace rápido y eficiente para verificar si una cadena cumple con una gramática.
-
+La gramática en teoría de la computación es un sistema que define cómo se forman las cadenas de un lenguaje. Sirve para verificar si las oraciones están bien construidas y es la base para analizar lenguajes de programación y naturales. El análisis sintáctico (o parsing) de ntax es la segunda fase, después del análisis léxico. Comprueba la estructura sintáctica de la entrada, es decir, si esta tiene la sintaxis correcta (del lenguaje en el que se escribió). Estare implementando el análisis con un parser LL(1)  que es una técnica utilizada en compiladores para analizar la estructura gramatical de una cadena de entrada (como el código fuente de un programa), siguiendo una gramática libre de contexto.
 **Gramatica Inicial**
 ```
 Oración → Oración Conjunción Oración| Sujeto Predicado| Oración Adverbio
@@ -82,13 +80,17 @@ Adjetivo → 'grandi' | 'veloci' | 'belli'
 Conjunción → 'e' | 'o'
 ```
 
-Esta gramatica cuenta con ambiguedad y recursion a la izquierda, lo que hace que exista mas de un arbol como para la oración "i cani e i gatti e gli elefanti corrono" (el elefante, el gato y el perro corren). En este caso la recursión a la izquierda estan en Oracion -> Oracion Conjuncion Oracion, y que esta permitiendo que un no terminal (Oracion) se derive a si mismo. Por otro lado la ambiguedad se demuestra ya que existe mas de un arbol para una misma oración. 
+Esta gramatica cuenta con ambiguedad y recursion a la izquierda, lo que hace que exista mas de una manera de implementacion creando mas de un arbol. Por ejemplo como para la oración "i cani e i gatti e gli elefanti corrono" (el elefante, el gato y el perro corren) se crean dos arboles.
+
+En este caso la recursión a la izquierda se presnta cuando una regla esta seguida por el mismo no terminal:  S ⇒ S | a | b, esto no es deseabe ya que puede causar un loop infinito. Para el caso de esta oracion la recursion a la izquierda estan en **Oracion -> Oracion Conjuncion Oracion**, y que esta permitiendo que un no terminal (Oracion) se derive a si mismo. 
+
+Por otro lado la ambiguedad surge cuando un string puede ser implementado por mas de un arbol. En este caso **Sujeto → Sujeto Conjunción Sujeto** permite agrupar los sujetos de mas de una forma (i cani e i gatti) e gli elefanti - i cani e (i gatti e gli elefanti). Lo anterior también se puede observar en la imagen la cual muestra dos arboles con implementacion distinta para el mismo string. 
 
 ![Gramatica Inicia](/gramaticaInicial.png)
 
 **Eliminar la ambiguedad**
 
-Para eliminar la ambigüedad, necesitamos usar estados intermedios en cada línea que se llama a sí misma dos veces en la misma opción, por ejemplo, en Oración → Oración Conjunción Oración| Sujeto Predicado | *otros estados*, que se resolvería con el estado intermedio Oracion -> S S -> *otros estados*. También añadí estos estados en  VP y NP.
+Para eliminar la ambigüedad, estoy usando estados intermedios en cada línea que se llama a sí misma dos veces en la misma opción,estoy utilizando VP y NP. Por ejemplo para Oracion → Oracion Conjuncion Oracion estoy usando S →  S Conjuncion NP VP
 
 ```
 S -> S Conjuncion NP VP | NP VP
@@ -129,7 +131,12 @@ Esta jerarquía tiene cuatro niveles, desde los más generales (más poderosos, 
 La gramatica antes de eliminar (recursion izquierda y ambiguedad) y después  es de **tipo 2**, es decir una gramatica libre de contexto. Todos tienen un único no terminal en el lado izquierdo y no dependen del contexto en el que aparece ese símbolo para aplicarse. Cada producción tiene la forma A → α, donde A es un no terminal y α es una cadena de terminales y no terminales. 
 
 ## Complejidad 
-La complejidad de 
+La implementación de nuestro analizador gramatical de tiene una complejidad temporal de O(n), donde n es la longitud de la entrada. Los factores clave de complejidad son:
+
+El proceso de tokenización que requiere iterar la oración una vez, lo que nos da una complejidad de O(n).
+El análisis utiliza ChartParser de NLTK, que implementa el algoritmo de Earley. Si bien esto tiene una complejidad en el peor de los casos de O(n³), nuestra gramática está diseñada para ser no ambigua y determinista, lo que hace que el caso promedio se acerque más a O(n).
+Los casos de prueba se ejecutan en un tiempo de O(m), donde m es el número de oraciones de prueba, ya que cada oración se procesa de forma independiente.
+No hay bucles anidados que aumenten la complejidad más allá del tiempo lineal en la ruta de procesamiento principal, lo que hace que esta implementación sea eficiente para los requisitos dados.
 
 ## Referencias
 - C. (2003, September 15). *Lengua romance*. Wikipedia.org; Wikimedia Foundation, Inc. [https://es.wikipedia.org/wiki/Idioma_italiano](https://es.wikipedia.org/wiki/Idioma_italiano)
