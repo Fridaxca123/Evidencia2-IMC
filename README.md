@@ -81,6 +81,8 @@ Adjetivo → 'grandi' | 'veloci' | 'belli'
 
 Conjunción → 'e' | 'o'
 ```
+Esta gramatica cuenta con ambiguedad y recursion a la izquierda:
+![Gramatica Inicia](/gramaticaInicial.png)
 
 
 ## Referencias
