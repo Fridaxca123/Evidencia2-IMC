@@ -176,3 +176,4 @@ La implementación de nuestro analizador gramatical tiene una complejidad tempor
 - C. (2003, September 15). *Lengua romance*. Wikipedia.org; Wikimedia Foundation, Inc. [https://es.wikipedia.org/wiki/Idioma_italiano](https://es.wikipedia.org/wiki/Idioma_italiano)
 - Introduction To Grammar in Theory of Computation. (2021, January 16). GeeksforGeeks. [https://www.geeksforgeeks.org/introduction-to-grammar-in-theory-of-computation/]
 - Construction of LL(1) Parsing Table. (2019, February 27). GeeksforGeeks. [https://www.geeksforgeeks.org/construction-of-ll1-parsing-table/]
+- Removing Direct and Indirect Left Recursion in a Grammar. (2019, November 13). GeeksforGeeks. [https://www.geeksforgeeks.org/removing-direct-and-indirect-left-recursion-in-a-grammar/]
