@@ -93,9 +93,33 @@ Por otro lado la ambiguedad surge cuando un string puede ser implementado por ma
 Para eliminar la ambigüedad, estoy usando  estados intermedios y producciones que indican una precedencia en cada línea que se llama a sí misma dos veces en la misma reglas. Por ejemplo para la ambuiguedad que esta afectando a la oracion **Sujeto → Sujeto Conjunción Sujeto**  estoy añadiendo un **Sujeto -> Pronombre Sustantivo | Sujeto Conjuncion Sujeto2** y **Sujeto2 -> Pronombre Sustantivo**
 
 ```
-S -> S Conjuncion NP VP | NP VP
-NP -> Pronombre Sustantivo | NP Conjuncion NP
-VP -> Verbo | Verbo Adjetivo | Verbo Adverbio
+Oracion -> Oracion Conjuncion Oracion2 | Sujeto Predicado | Oracion Adverbio
+
+Oracion2 ->  Sujeto Predicado | Oracion Adverbio
+                
+Predicado -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio | Predicado Conjuncion Predicado2
+   
+Predicado2 -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio 
+                           
+Complemento ->  Adjetivo | Complemento Conjuncion Complemento2
+
+Complemento2 ->  Adjetivo 
+                           
+Sujeto -> Pronombre Sustantivo | Sujeto Conjuncion Sujeto2               
+
+Sujeto2 -> Pronombre Sustantivo 
+                           
+Pronombre -> 'le' | 'gli' | 'i'
+
+Sustantivo -> 'mani' | 'sedie' | 'finestre' | 'mele' | 'stelle' | 'elefanti' | 'bambini' | 'cani' | 'gatti' | 'fiori'
+
+Verbo -> 'sono' | 'corrono' | 'saltano'
+
+Adverbio -> 'sempre' | 'presto' | 'spesso'
+
+Adjetivo -> 'grandi' | 'veloci' | 'belli'
+
+Conjuncion -> 'e' | 'o'
 ```
 **Eliminar la recursion izquierda**
 Para eliminar la recursión por la izquierda, necesitamos deshacernos de las aquellos no terminales que se derivan a si mismos:
