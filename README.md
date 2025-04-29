@@ -86,7 +86,7 @@ Esta gramatica cuenta con ambiguedad y recursion a la izquierda, lo que hace que
 
 ![Gramatica Inicia](/gramaticaInicial.png)
 
-**ELiminar la ambiguedad**
+**Eliminar la ambiguedad**
 
 Para eliminar la ambigüedad, necesitamos usar estados intermedios en cada línea que se llama a sí misma dos veces en la misma opción, por ejemplo, en Oración → Oración Conjunción Oración| Sujeto Predicado | *otros estados*, que se resolvería con el estado intermedio Oracion -> S S -> *otros estados*. También añadí estos estados en  VP y NP.
 
@@ -96,6 +96,8 @@ S -> S Conjuncion NP VP | NP VP
 NP -> Pronombre Sustantivo | NP Conjuncion NP
 VP -> Verbo | Verbo Adjetivo | Verbo Adverbio
 ```
+**Eliminar la recursion izquierda**
+Para eliminar la recursión por la izquierda, necesitamos deshacernos de las aquellos no terminales que se derivan a si mismos:
 
 ## Referencias
 - C. (2003, September 15). *Lengua romance*. Wikipedia.org; Wikimedia Foundation, Inc. [https://es.wikipedia.org/wiki/Idioma_italiano](https://es.wikipedia.org/wiki/Idioma_italiano)
