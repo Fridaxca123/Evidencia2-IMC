@@ -82,7 +82,7 @@ Adjetivo → 'grandi' | 'veloci' | 'belli'
 Conjunción → 'e' | 'o'
 ```
 
-Esta gramatica cuenta con ambiguedad y recursion a la izquierda, lo que hace que exista mas de un arbol como para la oración "i cani e i gatti e gli elefanti corrono" (el elefante, el gato y el perro corren), laa recursión a la izquierda en Oracion -> Oracion Conjuncion Oracion permite múltiples interpretaciones.
+Esta gramatica cuenta con ambiguedad y recursion a la izquierda, lo que hace que exista mas de un arbol como para la oración "i cani e i gatti e gli elefanti corrono" (el elefante, el gato y el perro corren). En este caso la recursión a la izquierda estan en Oracion -> Oracion Conjuncion Oracion, y que esta permitiendo que un no terminal (Oracion) se derive a si mismo. Por otro lado la ambiguedad se demuestra ya que existe mas de un arbol para una misma oración. 
 
 ![Gramatica Inicia](/gramaticaInicial.png)
 
