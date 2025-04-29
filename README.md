@@ -98,6 +98,34 @@ VP -> Verbo | Verbo Adjetivo | Verbo Adverbio
 ```
 **Eliminar la recursion izquierda**
 Para eliminar la recursión por la izquierda, necesitamos deshacernos de las aquellos no terminales que se derivan a si mismos:
+```
+Oracion -> S
+S -> NP VP | NP VP Conjuncion S  
+NP -> Pronombre Sustantivo | NP Conjuncion NP  
+VP -> Verbo | Verbo Adjetivo | Verbo Adverbio
+```
+## Pruebas 
+**Correctas**
+* i cani e i gatti e gli elefanti corrono
+* gli elefanti saltano spesso
+* i bambini saltano"
+* le mele sono grandi
+* i cani corrono
+
+**Incorrectas**
+* corrono i cani
+* i cani e corrono
+* i cani grandi
+* e i cani corrono
+* i cani corrono veloci e
+
+## Jerarquia Chomsky
+La jerarquía de Chomsky fue propuesta por el lingüista y científico computacional Noam Chomsky en 1956 con el propósito de clasificar las gramáticas formales según su capacidad expresiva, es decir, según el tipo de lenguajes que pueden generar.
+
+Esta jerarquía tiene cuatro niveles, desde los más generales (más poderosos, pero menos estructurados) hasta los más restringidos (más estructurados, pero con menor poder expresivo). 
+
+La gramatica que presento es de **tipo 2**, es decir una gramatica libre de contexto. Todos tienen un único no terminal en el lado izquierdo y no dependen del contexto en el que aparece ese símbolo para aplicarse. Cada producción tiene la forma A → α, donde A es un no terminal y α es una cadena de terminales y no terminales. 
+
 
 ## Referencias
 - C. (2003, September 15). *Lengua romance*. Wikipedia.org; Wikimedia Foundation, Inc. [https://es.wikipedia.org/wiki/Idioma_italiano](https://es.wikipedia.org/wiki/Idioma_italiano)
