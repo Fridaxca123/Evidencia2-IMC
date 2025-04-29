@@ -123,6 +123,11 @@ VPmod -> Adjetivo | Adverbio |
 * e i cani corrono
 * i cani corrono veloci e
 
+
+![Gramatica Inicia](/gramatica1.png)
+
+![Gramatica Inicia](/gramatica2.png)
+
 ## Jerarquia Chomsky
 La jerarquía de Chomsky fue propuesta por el lingüista y científico computacional Noam Chomsky en 1956 con el propósito de clasificar las gramáticas formales según su capacidad expresiva, es decir, según el tipo de lenguajes que pueden generar.
 
