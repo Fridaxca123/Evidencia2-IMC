@@ -2,22 +2,52 @@ import nltk
 from nltk import CFG
 
 gramatica = CFG.fromstring("""
-S -> NPLista VP
-NPLista -> NP NPListaRest
-NPListaRest -> Conjuncion NP NPListaRest | 
-NP -> Pronombre Sustantivo
-VP -> Verbo VPmod
-VPmod -> Adjetivo | Adverbio | 
+Oracion -> Sujeto Predicado OracionP| Adverbio OracionP
+                           
+OracionP -> Conjuncion Oracion2 OracionP| 
+
+Oracion2 -> Sujeto Predicado | Oracion Adverbio
+
+Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP
+                           
+PredicadoP -> Conjuncion Predicado2 PredicadoP | 
+
+Predicado2 -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio
+
+Complemento -> Adjetivo ComplementoP
+                           
+ComplementoP -> Conjuncion Complemento2 ComplementoP | 
+
+Complemento2 -> Adjetivo
+
+Sujeto -> Pronombre Sustantivo SujetoP
+                           
+SujetoP -> Conjuncion Sujeto2 SujetoP | 
+
+Sujeto2 -> Pronombre Sustantivo
 
 Pronombre -> 'le' | 'gli' | 'i'
+
 Sustantivo -> 'mani' | 'sedie' | 'finestre' | 'mele' | 'stelle' | 'elefanti' | 'bambini' | 'cani' | 'gatti' | 'fiori'
+
 Verbo -> 'sono' | 'corrono' | 'saltano'
+
 Adverbio -> 'sempre' | 'presto' | 'spesso'
+
 Adjetivo -> 'grandi' | 'veloci' | 'belli'
+
 Conjuncion -> 'e' | 'o'
 """)
 
 parser = nltk.ChartParser(gramatica)
+
+def marcar_epsilon(tree):
+    if isinstance(tree, nltk.Tree):
+        if len(tree) == 0:
+            tree.append('(ε)')
+        else:
+            for child in tree:
+                marcar_epsilon(child)
 
 oraciones = [
     # Correctas
@@ -41,8 +71,10 @@ for oracion in oraciones:
     if trees:
         print(f" Árboles generados: {len(trees)}")
         for i, tree in enumerate(trees, 1):
+            marcar_epsilon(tree)  # Agrega (ε) en nodos vacíos
             print(f"\nÁrbol {i}:")
             tree.pretty_print()
     else:
         print(" No se generaron árboles.")
+
 
