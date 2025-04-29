@@ -136,12 +136,10 @@ Esta jerarquía tiene cuatro niveles, desde los más generales (más poderosos, 
 La gramatica antes de eliminar (recursion izquierda y ambiguedad) y después  es de **tipo 2**, es decir una gramatica libre de contexto. Todos tienen un único no terminal en el lado izquierdo y no dependen del contexto en el que aparece ese símbolo para aplicarse. Cada producción tiene la forma A → α, donde A es un no terminal y α es una cadena de terminales y no terminales. 
 
 ## Complejidad 
-La implementación de nuestro analizador gramatical de tiene una complejidad temporal de O(n), donde n es la longitud de la entrada. Los factores clave de complejidad son:
-
-El proceso de tokenización que requiere iterar la oración una vez, lo que nos da una complejidad de O(n).
-El análisis utiliza ChartParser de NLTK, que implementa el algoritmo de Earley. Si bien esto tiene una complejidad en el peor de los casos de O(n³), nuestra gramática está diseñada para ser no ambigua y determinista, lo que hace que el caso promedio se acerque más a O(n).
-Los casos de prueba se ejecutan en un tiempo de O(m), donde m es el número de oraciones de prueba, ya que cada oración se procesa de forma independiente.
-No hay bucles anidados que aumenten la complejidad más allá del tiempo lineal en la ruta de procesamiento principal, lo que hace que esta implementación sea eficiente para los requisitos dados.
+La implementación de nuestro analizador gramatical tiene una complejidad temporal aproximada de O(n), donde n es la longitud de la entrada. Los principales factores que determinan esta complejidad son los siguientes:
+* Tokenización: Este proceso implica recorrer la oración una vez para dividirla en tokens, lo que conlleva una complejidad de O(n).
+* Análisis sintáctico: Utilizamos el ChartParser de NLTK, que implementa el algoritmo de Earley. Aunque en el peor de los casos este algoritmo puede tener una complejidad de O(n³), en la práctica, nuestra gramática ha sido diseñada para ser no ambigua y determinista, lo que reduce la complejidad esperada a un comportamiento cercano a O(n) en la mayoría de los casos.
+* Casos de prueba: Cada oración de prueba se procesa de forma independiente, por lo que el análisis de m oraciones tiene una complejidad total de O(m), asumiendo que cada oración tiene una longitud acotada.
 
 ## Referencias
 - C. (2003, September 15). *Lengua romance*. Wikipedia.org; Wikimedia Foundation, Inc. [https://es.wikipedia.org/wiki/Idioma_italiano](https://es.wikipedia.org/wiki/Idioma_italiano)
