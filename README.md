@@ -67,11 +67,11 @@ Predicado → Verbo Complemento | Verbo Adjetivo| Verbo Adverbio| Predicado Conj
    
 Complemento → Sustantivo | Adjetivo | Complemento Conjunción Complemento
 
-Sujeto → PronombrePlural SustantivoPlural| Sujeto Conjunción Sujeto                 
+Sujeto → Pronombre Sustantivo | Sujeto Conjunción Sujeto                 
 
-PronombrePlural → 'le' | 'gli' | 'i'
+Pronombre → 'le' | 'gli' | 'i'
 
-SustantivoPlural → 'mani' | 'sedie' | 'finestre' | 'mele'  | 'stelle' | 'elefanti' | 'bambini'  | 'cani' | 'gatti' | 'fiori'
+Sustantivo → 'mani' | 'sedie' | 'finestre' | 'mele'  | 'stelle' | 'elefanti' | 'bambini'  | 'cani' | 'gatti' | 'fiori'
 
 Verbo → 'sono' | 'corrono' | 'saltano'
 
@@ -81,7 +81,9 @@ Adjetivo → 'grandi' | 'veloci' | 'belli'
 
 Conjunción → 'e' | 'o'
 ```
-Esta gramatica cuenta con ambiguedad y recursion a la izquierda:
+
+Esta gramatica cuenta con ambiguedad y recursion a la izquierda, lo que hace que exista mas de un arbol como para la oración "i cani e i gatti e gli elefanti corrono" (el elefante, el gato y el perro corren), laa recursión a la izquierda en Oracion -> Oracion Conjuncion Oracion permite múltiples interpretaciones.
+
 ![Gramatica Inicia](/gramaticaInicial.png)
 
 
