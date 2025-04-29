@@ -100,9 +100,13 @@ VP -> Verbo | Verbo Adjetivo | Verbo Adverbio
 Para eliminar la recursión por la izquierda, necesitamos deshacernos de las aquellos no terminales que se derivan a si mismos:
 ```
 Oracion -> S
-S -> NP VP | NP VP Conjuncion S  
-NP -> Pronombre Sustantivo | NP Conjuncion NP  
-VP -> Verbo | Verbo Adjetivo | Verbo Adverbio
+S -> NPLista VP
+NPLista -> NP NPListaRest
+NPListaRest -> Conjuncion NP NPListaRest | 
+NP -> Pronombre Sustantivo
+VP -> Verbo VPmod
+VPmod -> Adjetivo | Adverbio |
+
 ```
 ## Pruebas 
 **Correctas**
