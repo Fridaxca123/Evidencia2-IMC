@@ -133,6 +133,7 @@ SujetoP -> Conjuncion Sujeto2 SujetoP | ε
 Sujeto2 -> Pronombre Sustantivo
 ```
 ## Pruebas 
+Para probar mi gramatica implemente python usando nltk.CFG (para definir gramaticas libres de contexto)y nltk.ChartParser(para analizar las oraciones). Para probar el programa descargue el archivo **test.py** y corralo. 
 **Correctas**
 * i cani e i gatti e gli elefanti corrono
 * gli elefanti saltano spesso
