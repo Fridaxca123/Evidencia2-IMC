@@ -111,7 +111,7 @@ Para **Complemento → Complemento Conjunción Complemento**
 1. Creo un estado intermedio llamado Complemento2 y lo coloco al final evitando que exitan dos Complemento **Complemento ->  Adjetivo | Complemento Conjuncion Complemento2**
 2. Indico precedencia  **Complemento2 ->  Adjetivo**
 
-Sin embargo complemento me sigue teniendo ambiguedad ya que me crea dos arbole para la pracion "le mele sono grandi": 
+Sin embargo complemento me sigue teniendo ambiguedad ya que me crea dos arbole para la oracion "le mele sono grandi", debido a que hay dos posibles  camino para sono grandi: Predicado -> Verbo Adjetivo y Predicado -> Verbo Complemento
 Complemento -> Sustantivo ComplementoP
                            
 ComplementoP -> Conjuncion Complemento2 ComplementoP | 
@@ -127,9 +127,11 @@ Predicado -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio | Predi
    
 Predicado2 -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio 
                            
-Complemento ->  Adjetivo | Complemento Conjuncion Complemento2
+Complemento -> Sustantivo ComplementoP
+                           
+ComplementoP -> Conjuncion Complemento2 ComplementoP | 
 
-Complemento2 ->  Adjetivo 
+Complemento2 -> Adjetivo 
                            
 Sujeto -> Articulo Sustantivo | Sujeto Conjuncion Sujeto2               
 
