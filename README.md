@@ -10,18 +10,8 @@ Ejemplo: La donna legge un libro
 * Sujeto: La donna 
 * Verbo: legge 
 * Predicado: un libro
-* Plural: Le donne leggono un libro 
+* Plural: Le donne leggono un libro
 
-## Plural 
-Para usar el plural utilizare las siguientes reglas:
-* Solo tomare en cuenta los verbos regulares 
-* Pronombre le para femenino
-* Pronombre I para masculino si el sustantivo comienza con consontante 
-* Pronombre gli para masculino si el sustantivo comienza con vocal
-* Si un sustantivo termina en -e es femenino
-* Si termina en -i, suele ser masculino.
-* Los adverbios no tienen género.
-  
 ## Modelo 
 
 **Sujeto (Pronombre + Sustantivo)**
@@ -57,7 +47,10 @@ Para usar el plural utilizare las siguientes reglas:
 
 ## Gramatica
 La gramática en teoría de la computación es un sistema que define cómo se forman las cadenas de un lenguaje. Sirve para verificar si las oraciones están bien construidas y es la base para analizar lenguajes de programación y naturales. El análisis sintáctico (o parsing) de ntax es la segunda fase, después del análisis léxico. Comprueba la estructura sintáctica de la entrada, es decir, si esta tiene la sintaxis correcta (del lenguaje en el que se escribió). Estare implementando el análisis con un parser LL(1)  que es una técnica utilizada en compiladores para analizar la estructura gramatical de una cadena de entrada (como el código fuente de un programa), siguiendo una gramática libre de contexto.
-**Gramatica Inicial**
+
+**Gramatica Inicial** 
+Mi gramatica inicial es capaz de producir oraciónes para sujetos en plural. Con la estuctura base de Sujeto + Predicado (Este por lo general es un verbo + (adjetivo, adverbio, complemento)). La gramatica tener oraciones mas complejas debido a que también se permiten las conjunciones permitiendo oraciónes como: i cani e i gatti e gli elefanti corrono (contien 3 sujetos) o i fiori corrono veloci e sono belli (contiene dos verbos con su respectivo adjetivo). 
+
 ```
 Oración → Oración Conjunción Oración| Sujeto Predicado| Oración Adverbio
                 
