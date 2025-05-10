@@ -15,10 +15,10 @@ Ejemplo: La donna legge un libro
 
 ## Modelo 
 
-**Articulo)**
-*le 
-*gli
-*i
+**Articulo**
+* le 
+* gli
+* i
 
 **Sustantivo**
 * mani: manos
