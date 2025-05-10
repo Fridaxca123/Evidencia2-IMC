@@ -86,6 +86,7 @@ Esta gramatica cuenta con ambiguedad lo que hace que exista mas de una manera de
 La ambiguedad surge cuando un string puede ser implementado por mas de un arbol **E-> E + E | E * E | id** . En este caso se esta causando ambiguedad en la linea **Sujeto → Sujeto Conjunción Sujeto**  permite agrupar los sujetos de mas de una forma (i cani e i gatti) e gli elefanti - i cani e (i gatti e gli elefanti). Lo anterior también se puede observar en la imagen la cual muestra dos arboles con implementacion distinta para el mismo string. 
 
 Para eliminar la ambigüedad, usare  estados intermedios y producciones que indican una precedencia en cada línea que se llama a sí misma dos veces en la misma reglas. Basandome en la bibliografía:
+
 E → E + T | T 
 
 T → T * F | F
@@ -109,6 +110,13 @@ Para **Predicado → Predicado Conjunción Predicado**
 Para **Complemento → Complemento Conjunción Complemento**
 1. Creo un estado intermedio llamado Complemento2 y lo coloco al final evitando que exitan dos Complemento **Complemento ->  Adjetivo | Complemento Conjuncion Complemento2**
 2. Indico precedencia  **Complemento2 ->  Adjetivo**
+
+Sin embargo complemento me sigue teniendo ambiguedad ya que me crea dos arbole para la pracion "le mele sono grandi": 
+Complemento -> Sustantivo ComplementoP
+                           
+ComplementoP -> Conjuncion Complemento2 ComplementoP | 
+
+Complemento2 -> Adjetivo
 
 ```
 Oracion -> Oracion Conjuncion Oracion2 | Sujeto Predicado | Oracion Adverbio
