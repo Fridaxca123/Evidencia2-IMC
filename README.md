@@ -78,18 +78,37 @@ Adjetivo → 'grandi' | 'veloci' | 'belli'
 
 Conjunción → 'e' | 'o'
 ```
-
-Esta gramatica cuenta con ambiguedad y recursion a la izquierda, lo que hace que exista mas de una manera de implementacion creando mas de un arbol. Por ejemplo como para la oración "i cani e i gatti e gli elefanti corrono" (el elefante, el gato y el perro corren) se crean dos arboles.
-
-En este caso la recursión a la izquierda se presenta cuando una regla esta seguida por el mismo no terminal:  S ⇒ S | a | b, esto no es deseabe ya que puede causar un loop infinito. Para el caso de esta oracion la recursion a la izquierda estan en **Oracion -> Oracion Conjuncion Oracion**, y que esta permitiendo que un no terminal (Oracion) se derive a si mismo. 
-
-Por otro lado la ambiguedad surge cuando un string puede ser implementado por mas de un arbol. En este caso **Sujeto → Sujeto Conjunción Sujeto** permite agrupar los sujetos de mas de una forma (i cani e i gatti) e gli elefanti - i cani e (i gatti e gli elefanti). Lo anterior también se puede observar en la imagen la cual muestra dos arboles con implementacion distinta para el mismo string. 
+## Eliminar la ambiguedad
+Esta gramatica cuenta con ambiguedad lo que hace que exista mas de una manera de implementacion creando asi mas de un arbol. Por ejemplo como para la oración "i cani e i gatti e gli elefanti corrono" (el elefante, el gato y el perro corren) se crean dos arboles. Esto sucede igualmente con otras oraciones. 
 
 ![Gramatica Inicia](/gramaticaInicial.png)
 
-**Eliminar la ambiguedad**
+La ambiguedad surge cuando un string puede ser implementado por mas de un arbol **E-> E + E | E * E | id** . En este caso se esta causando ambiguedad en la linea **Sujeto → Sujeto Conjunción Sujeto**  permite agrupar los sujetos de mas de una forma (i cani e i gatti) e gli elefanti - i cani e (i gatti e gli elefanti). Lo anterior también se puede observar en la imagen la cual muestra dos arboles con implementacion distinta para el mismo string. 
 
-Para eliminar la ambigüedad, estoy usando  estados intermedios y producciones que indican una precedencia en cada línea que se llama a sí misma dos veces en la misma reglas. Por ejemplo para la ambuiguedad que esta afectando a la oracion **Sujeto → Sujeto Conjunción Sujeto**  estoy añadiendo un **Sujeto -> Pronombre Sustantivo | Sujeto Conjuncion Sujeto2** y **Sujeto2 -> Pronombre Sustantivo**
+Para eliminar la ambigüedad, usare  estados intermedios y producciones que indican una precedencia en cada línea que se llama a sí misma dos veces en la misma reglas. Basandome en la bibliografía:
+E → E + T | T 
+
+T → T * F | F
+
+F → id	
+
+Para **Sujeto → Sujeto Conjunción Sujeto** 
+
+1. Creo un estado intermedio llamado Sujeto2 y lo coloco al final evitando que exita dos Sujeto **Sujeto → Articulo Sustantivo | Sujeto Conjunción Sujeto2**
+2. El Sujeto2 solo puede ser articulo + sustantivo **Sujeto2 → Articulo Sustantivo**
+
+Para **Oración → Oración Conjunción Oración**
+1. Creo un estado intermedio llamado Sujeto2 y lo coloco al final evitando que exitan dos Oracion **Oracion -> Oracion Conjuncion Oracion2 | Sujeto Predicado | Oracion Adverbio**
+2. Indico precedencia **Oracion2 ->  Sujeto Predicado | Oracion Adverbio**
+
+Para **Predicado → Predicado Conjunción Predicado**
+1. Creo un estado intermedio llamado Predicado2 y lo coloco al final evitando que exitan dos Predicado **Predicado -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio | Predicado Conjuncion Predicado2**
+2. Indico precedencia **Predicado2 -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio**
+
+
+Para **Complemento → Complemento Conjunción Complemento**
+1. Creo un estado intermedio llamado Complemento2 y lo coloco al final evitando que exitan dos Complemento **Complemento ->  Adjetivo | Complemento Conjuncion Complemento2**
+2. Indico precedencia  **Complemento2 ->  Adjetivo**
 
 ```
 Oracion -> Oracion Conjuncion Oracion2 | Sujeto Predicado | Oracion Adverbio
@@ -104,11 +123,12 @@ Complemento ->  Adjetivo | Complemento Conjuncion Complemento2
 
 Complemento2 ->  Adjetivo 
                            
-Sujeto -> Pronombre Sustantivo | Sujeto Conjuncion Sujeto2               
+Sujeto -> Articulo Sustantivo | Sujeto Conjuncion Sujeto2               
 
-Sujeto2 -> Pronombre Sustantivo 
+Sujeto2 -> Articulo Sustantivo 
 ```
 **Eliminar la recursion izquierda**
+En este caso la recursión a la izquierda se presenta cuando una regla esta seguida por el mismo no terminal:  S ⇒ S | a | b, esto no es deseabe ya que puede causar un loop infinito. Para el caso de esta oracion la recursion a la izquierda estan en **Oracion -> Oracion Conjuncion Oracion**, y que esta permitiendo que un no terminal (Oracion) se derive a si mismo. 
 Para eliminar la recursión por la izquierda, necesitamos deshacernos de las aquellos no terminales que se derivan a si mismos utilize el siguiente formato
 S ⇒ S a | S b | c | d 
 S ⇒ cS' | dS'
