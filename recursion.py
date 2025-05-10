@@ -14,19 +14,19 @@ PredicadoP -> Conjuncion Predicado2 PredicadoP |
 
 Predicado2 -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio
 
-Complemento -> Adjetivo ComplementoP
+Complemento -> Sustantivo ComplementoP
                            
 ComplementoP -> Conjuncion Complemento2 ComplementoP | 
 
 Complemento2 -> Adjetivo
 
-Sujeto -> Pronombre Sustantivo SujetoP
+Sujeto -> Articulo Sustantivo SujetoP
                            
 SujetoP -> Conjuncion Sujeto2 SujetoP | 
 
-Sujeto2 -> Pronombre Sustantivo
+Sujeto2 -> Articulo Sustantivo
 
-Pronombre -> 'le' | 'gli' | 'i'
+Articulo -> 'le' | 'gli' | 'i'
 
 Sustantivo -> 'mani' | 'sedie' | 'finestre' | 'mele' | 'stelle' | 'elefanti' | 'bambini' | 'cani' | 'gatti' | 'fiori'
 
@@ -55,7 +55,7 @@ oraciones = [
     "gli elefanti saltano spesso",
     "i bambini saltano",
     "le mele sono grandi",
-    "i cani corrono",
+    "i fiori corrono veloci e sono belli",
     # Incorrectas
     "corrono i cani",
     "i cani e corrono",
