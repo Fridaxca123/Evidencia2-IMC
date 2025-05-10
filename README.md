@@ -4,7 +4,7 @@
 EL italiano es una lengua romance procedente del latín hablado, pertenece a la familia de las lenguas Indo-Europeas. Es el idioma oficial en Italia, Vaticano y San Marino. Se calcula que, en el año 2006, unos 64 millones de ciudadanos europeos hablaban el italiano como lengua materna, y 14,7 millones como segunda o tercera lengua. 
 
 ## Estructura
-Para mi modelo estare utilizando una estructura de sujeto + verbo + predicado, tambien se podran usar conjunciónes para alargar las oraciones. El italiano se distingue por como el español tener distintas conjugaciones, donde los pronombres, sustantivos y verbos deben coincidir en género (masculino o femenino) y número (singular o plural). Para esta gramatica estare implementando oraciones con una estuctura basica con sujeto plural. 
+Para mi modelo estare utilizando una estructura de **sujeto + verbo + predicado**, tambien se podran usar conjunciónes para alargar las oraciones. El italiano se distingue por como el español tener distintas conjugaciones, donde los pronombres, sustantivos y verbos deben coincidir en género (masculino o femenino) y número (singular o plural). Para esta gramatica estare implementando oraciones con una estuctura basica con sujeto plural. 
 
 Ejemplo: La donna legge un libro 
 * Sujeto: La donna 
@@ -49,7 +49,7 @@ Ejemplo: La donna legge un libro
 La gramática en teoría de la computación es un sistema que define cómo se forman las cadenas de un lenguaje. Sirve para verificar si las oraciones están bien construidas y es la base para analizar lenguajes de programación y naturales. El análisis sintáctico (o parsing) de ntax es la segunda fase, después del análisis léxico. Comprueba la estructura sintáctica de la entrada, es decir, si esta tiene la sintaxis correcta (del lenguaje en el que se escribió). Estare implementando el análisis con un parser LL(1)  que es una técnica utilizada en compiladores para analizar la estructura gramatical de una cadena de entrada (como el código fuente de un programa), siguiendo una gramática libre de contexto.
 
 **Gramatica Inicial:** 
-Mi gramatica inicial es capaz de producir oraciónes para sujetos en plural. Con la estuctura base de Sujeto + Predicado (Este por lo general es un verbo + (adjetivo, adverbio, complemento)). La gramatica tener oraciones mas complejas debido a que también se permiten las conjunciones permitiendo oraciónes como: **i cani e i gatti e gli elefanti corrono** (contien 3 sujetos) o **i fiori corrono veloci e sono belli** (contiene dos verbos con su respectivo adjetivo). 
+Mi gramatica inicial es capaz de producir oraciónes para sujetos en plural. Con fines de una gramatica efectiva  la estuctura base sera **Sujeto + Predicado** (Este por lo general es un verbo + (adjetivo, adverbio, complemento)). La gramatica puede producir oraciones mas complejas debido a que también se permiten las conjunciones permitiendo oraciónes como: **i cani e i gatti e gli elefanti corrono** (contien 3 sujetos) o **i fiori corrono veloci e sono belli** (contiene dos verbos con su respectivo adjetivo). 
 
 ```
 Oración → Oración Conjunción Oración| Sujeto Predicado| Oración Adverbio
