@@ -111,13 +111,6 @@ Para **Complemento → Complemento Conjunción Complemento**
 1. Creo un estado intermedio llamado Complemento2 y lo coloco al final evitando que exitan dos Complemento **Complemento ->  Adjetivo | Complemento Conjuncion Complemento2**
 2. Indico precedencia  **Complemento2 ->  Adjetivo**
 
-Sin embargo complemento me sigue teniendo ambiguedad ya que me crea dos arbole para la oracion "le mele sono grandi", debido a que hay dos posibles  camino para sono grandi: Predicado -> Verbo Adjetivo y Predicado -> Verbo Complemento
-Complemento -> Sustantivo ComplementoP
-                           
-ComplementoP -> Conjuncion Complemento2 ComplementoP | 
-
-Complemento2 -> Adjetivo
-
 ```
 Oracion -> Oracion Conjuncion Oracion2 | Sujeto Predicado | Oracion Adverbio
 
@@ -137,7 +130,7 @@ Sujeto -> Articulo Sustantivo | Sujeto Conjuncion Sujeto2
 
 Sujeto2 -> Articulo Sustantivo 
 ```
-**Eliminar la recursion izquierda**
+## Eliminar la recursion izquierda
 En este caso la recursión a la izquierda se presenta cuando una regla esta seguida por el mismo no terminal:  S ⇒ S | a | b, esto no es deseabe ya que puede causar un loop infinito. Para el caso de esta oracion la recursion a la izquierda estan en **Oracion -> Oracion Conjuncion Oracion**, y que esta permitiendo que un no terminal (Oracion) se derive a si mismo. 
 Para eliminar la recursión por la izquierda, necesitamos deshacernos de las aquellos no terminales que se derivan a si mismos utilize el siguiente formato
 S ⇒ S a | S b | c | d 
@@ -167,6 +160,36 @@ Sujeto -> Pronombre Sustantivo SujetoP
 SujetoP -> Conjuncion Sujeto2 SujetoP | ε
 
 Sujeto2 -> Pronombre Sustantivo
+```
+
+Sin embargo complemento me sigue teniendo ambiguedad ya que me crea dos arbole para la oracion "le mele sono grandi", debido a que hay dos posibles  camino para sono grandi: **Predicado -> Verbo Adjetivo** y **Predicado -> Verbo Complemento**. Para solucionar esto:
+
+1. Modifico a : **Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP**
+2. Modifico **Complemento -> Sustantivo ComplementoP** **ComplementoP -> Conjuncion Complemento2 ComplementoP |** **Complemento2 -> Adjetivo**
+```
+Oracion -> Sujeto Predicado OracionP| Adverbio OracionP
+                           
+OracionP -> Conjuncion Oracion2 OracionP| 
+
+Oracion2 -> Sujeto Predicado | Oracion Adverbio
+
+Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP
+                           
+PredicadoP -> Conjuncion Predicado2 PredicadoP | 
+
+Predicado2 -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio
+
+Complemento -> Sustantivo ComplementoP
+                           
+ComplementoP -> Conjuncion Complemento2 ComplementoP | 
+
+Complemento2 -> Adjetivo
+
+Sujeto -> Articulo Sustantivo SujetoP
+                           
+SujetoP -> Conjuncion Sujeto2 SujetoP | 
+
+Sujeto2 -> Articulo Sustantivo
 ```
 ## Pruebas 
 Para probar mi gramatica implemente python usando nltk.CFG (para definir gramaticas libres de contexto)y nltk.ChartParser(para analizar las oraciones). Para probar el programa descargue el archivo **test.py** y corralo. 
