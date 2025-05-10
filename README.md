@@ -162,6 +162,7 @@ SujetoP -> Conjuncion Sujeto2 SujetoP | ε
 Sujeto2 -> Pronombre Sustantivo
 ```
 
+## Aun existe ambiguedad
 Sin embargo complemento me sigue teniendo ambiguedad ya que me crea dos arbole para la oracion "le mele sono grandi", debido a que hay dos posibles  camino para sono grandi: **Predicado -> Verbo Adjetivo** y **Predicado -> Verbo Complemento**. Para solucionar esto:
 
 1. Modifico a : **Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP**
