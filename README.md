@@ -58,7 +58,7 @@ La gramática en teoría de la computación es un sistema que define cómo se fo
 Mi gramatica inicial es capaz de producir oraciónes para sujetos en plural. Con fines de una gramatica efectiva  la estuctura base sera **Articulo + Sutantivo + Predicado** (Este por lo general es un verbo + (adjetivo, adverbio, complemento)). La gramatica puede producir oraciones mas complejas debido a que también se permiten las conjunciones permitiendo oraciónes como: **i cani e i gatti e gli elefanti corrono** (contien 3 sujetos) o **i fiori corrono veloci e sono belli** (contiene dos verbos con su respectivo adjetivo). 
 
 ```
-Oración → Oración Conjunción Oración| Sujeto Predicado| Oración Adverbio
+Oración → Oración Conjunción | Sujeto Predicado| Oración Adverbio
                 
 Predicado → Verbo Complemento | Verbo Adjetivo| Verbo Adverbio| Predicado Conjunción Predicado
    
@@ -98,10 +98,6 @@ Para **Sujeto → Sujeto Conjunción Sujeto**
 1. Creo un estado intermedio llamado Sujeto2 y lo coloco al final evitando que exita dos Sujeto **Sujeto → Articulo Sustantivo | Sujeto Conjunción Sujeto2**
 2. El Sujeto2 solo puede ser articulo + sustantivo **Sujeto2 → Articulo Sustantivo**
 
-Para **Oración → Oración Conjunción Oración**
-1. Creo un estado intermedio llamado Sujeto2 y lo coloco al final evitando que exitan dos Oracion **Oracion -> Oracion Conjuncion Oracion2 | Sujeto Predicado | Oracion Adverbio**
-2. Indico precedencia **Oracion2 ->  Sujeto Predicado | Oracion Adverbio**
-
 Para **Predicado → Predicado Conjunción Predicado**
 1. Creo un estado intermedio llamado Predicado2 y lo coloco al final evitando que exitan dos Predicado **Predicado -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio | Predicado Conjuncion Predicado2**
 2. Indico precedencia **Predicado2 -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio**
@@ -112,67 +108,53 @@ Para **Complemento → Complemento Conjunción Complemento**
 2. Indico precedencia  **Complemento2 ->  Adjetivo**
 
 ```
-Oracion -> Oracion Conjuncion Oracion2 | Sujeto Predicado | Oracion Adverbio
-
-Oracion2 ->  Sujeto Predicado | Oracion Adverbio
+Oracion -> Oracion Conjuncion | Sujeto Predicado | Oracion Adverbio
                 
 Predicado -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio | Predicado Conjuncion Predicado2
    
 Predicado2 -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio 
                            
-Complemento -> Sustantivo ComplementoP
+Complemento → Sustantivo | Adjetivo | Complemento Conjunción Complemento2
                            
-ComplementoP -> Conjuncion Complemento2 ComplementoP | 
-
-Complemento2 -> Adjetivo 
+Complemento2 -> Sustantivo | Adjetivo 
                            
 Sujeto -> Articulo Sustantivo | Sujeto Conjuncion Sujeto2               
 
 Sujeto2 -> Articulo Sustantivo 
 ```
 ## Eliminar la recursion izquierda
-En este caso la recursión a la izquierda se presenta cuando una regla esta seguida por el mismo no terminal:  S ⇒ S | a | b, esto no es deseabe ya que puede causar un loop infinito. Para el caso de esta oracion la recursion a la izquierda estan en **Oracion -> Oracion Conjuncion Oracion**, y que esta permitiendo que un no terminal (Oracion) se derive a si mismo. 
-Para eliminar la recursión por la izquierda, necesitamos deshacernos de las aquellos no terminales que se derivan a si mismos utilize el siguiente formato
-S ⇒ S a | S b | c | d 
-S ⇒ cS' | dS'
-S' ⇒ ε | aS' | bS'
-```
-Oracion -> Sujeto Predicado OracionP| Adverbio OracionP
-                           
-OracionP -> Conjuncion Oracion2 OracionP| ε
+Mi gramatica tambien cuenta con recursion a la izquierda, la recursión a la izquierda se presenta cuando una regla esta seguida por el mismo no terminal:  S ⇒ S | a | b, esto no es deseabe ya que puede causar un loop infinito. Por ejemplo en mi gramatica la recursion se presenta en **Oracion -> Oracion Conjuncion Oracion2 | Sujeto Predicado | Oracion Adverbio**, ya que esta permitiendo que un no terminal (Oracion) se derive a si mismo. Para eliminar la recursión por la izquierda, necesitamos deshacernos de las aquellos no terminales que se derivan a si mismos utilize el siguiente proceso :  
 
-Oracion2 -> Sujeto Predicado | Oracion Adverbio
+**S ⇒ S a | S b | c | d**
 
-Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP
-                           
-PredicadoP -> Conjuncion Predicado2 PredicadoP | ε
+**S ⇒ cS' | dS'**
 
-Predicado2 -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio
+**S' ⇒ ε | aS' | bS'**
 
-Complemento -> Adjetivo ComplementoP
-                           
-ComplementoP -> Conjuncion Complemento2 ComplementoP | ε
+Para **Oracion -> Oracion Conjuncion | Sujeto Predicado | Oracion Adverbio**
+1. Separamos la recursión izquierda reescribiendo la regla con un inicio fijo  seguido de un nuevo no terminal **Oracion -> Sujeto Predicado OracionP** 
+2. Creamos una nueva regla para manejar las repeticiones de la parte recursiva: **OracionP -> Conjuncion Oracion2 OracionP| Adverbio OracionP| ε**
+* Elimine el adverbio de arriba de Oracion y el Sujeto de OracionP para evitar ambiguedades. 
 
-Complemento2 -> Adjetivo
-
-Sujeto -> Pronombre Sustantivo SujetoP
-                           
-SujetoP -> Conjuncion Sujeto2 SujetoP | ε
-
-Sujeto2 -> Pronombre Sustantivo
-```
-
-## Aun existe ambiguedad
-Sin embargo complemento me sigue teniendo ambiguedad ya que me crea dos arbole para la oracion "le mele sono grandi", debido a que hay dos posibles  camino para sono grandi: **Predicado -> Verbo Adjetivo** y **Predicado -> Verbo Complemento**. Para solucionar esto:
-
+Para **Predicado -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio | Predicado Conjuncion Predicado2**
+1. Separamos la recursión izquierda reescribiendo la regla con un inicio fijo (como Verbo, Verbo Complemento, etc.) seguido de un nuevo no terminal: **Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP** 
+2.Creamos una nueva regla para manejar las repeticiones de la parte recursiva:  **PredicadoP -> Conjuncion Predicado2 PredicadoP | ε**
+* **Predicado-> Verbo Complemento** y **Predicado -> Verbo Adjetivo** causan ambiguedad:
 1. Modifico a : **Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP**
 2. Modifico **Complemento -> Sustantivo ComplementoP** **ComplementoP -> Conjuncion Complemento2 ComplementoP |** **Complemento2 -> Adjetivo**
-```
-Oracion -> Sujeto Predicado OracionP| Adverbio OracionP
-                           
-OracionP -> Conjuncion Oracion2 OracionP| 
 
-Oracion2 -> Sujeto Predicado | Oracion Adverbio
+Para **Complemento → Sustantivo | Adjetivo | Complemento Conjunción Complemento2**
+1. Separamos la recursión izquierda reescribiendo la regla con un inicio fijo seguido de un nuevo no terminal: **Complemento ->  Sustantivo ComplementoP** 
+2.Creamos una nueva regla para manejar las repeticiones de la parte recursiva:  **ComplementoP -> Conjuncion Complemento2 ComplementoP | ε**
+
+Para **Sujeto -> Articulo Sustantivo | Sujeto Conjuncion Sujeto2**
+1. Separamos la recursión izquierda reescribiendo la regla con un inicio fijo seguido de un nuevo no terminal: **Sujeto -> Pronombre Sustantivo SujetoP** 
+2.Creamos una nueva regla para manejar las repeticiones de la parte recursiva:  **SujetoP -> Conjuncion Sujeto2 SujetoP | ε**
+
+```
+Oracion -> Sujeto Predicado 
+                           
+OracionP -> Conjuncion OracionP|  Adverbio OracionP |
 
 Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP
                            
@@ -193,7 +175,7 @@ SujetoP -> Conjuncion Sujeto2 SujetoP |
 Sujeto2 -> Articulo Sustantivo
 ```
 ## Pruebas 
-Para probar mi gramatica implemente python usando nltk.CFG (para definir gramaticas libres de contexto)y nltk.ChartParser(para analizar las oraciones). Para probar el programa descargue el archivo **test.py** y corralo. 
+Para probar mi gramatica implemente python usando nltk.CFG (para definir gramaticas libres de contexto)y nltk.ChartParser(para analizar las oraciones). Para probar el programa descargue el archivo **recursion.py** y corralo. 
 
 **Correctas**
 * i cani e i gatti e gli elefanti corrono
