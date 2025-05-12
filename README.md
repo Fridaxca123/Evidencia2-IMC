@@ -191,7 +191,9 @@ Para probar mi gramatica implemente python usando nltk.CFG (para definir gramati
 * i cani grandi
 * e i cani corrono
 * i cani corrono veloci e
-
+![Gramatica Inicia](/prueba1.png)
+![Gramatica Inicia](/prueba2.png)
+![Gramatica Inicia](/prueba3.png)
 
 ![Gramatica Inicia](/gramatica1.png)
 
