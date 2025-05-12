@@ -2,11 +2,9 @@ import nltk
 from nltk import CFG
 
 gramatica = CFG.fromstring("""
-Oracion -> Sujeto Predicado OracionP| Adverbio OracionP
+Oracion -> Sujeto Predicado 
                            
-OracionP -> Conjuncion Oracion2 OracionP| 
-
-Oracion2 -> Sujeto Predicado | Oracion Adverbio
+OracionP -> Conjuncion OracionP|  Adverbio OracionP |
 
 Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP
                            
@@ -76,5 +74,4 @@ for oracion in oraciones:
             tree.pretty_print()
     else:
         print(" No se generaron árboles.")
-
 
