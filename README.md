@@ -140,12 +140,13 @@ Para **Predicado -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio 
 1. Separamos la recursión izquierda reescribiendo la regla con un inicio fijo (como Verbo, Verbo Complemento, etc.) seguido de un nuevo no terminal: **Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP** 
 2.Creamos una nueva regla para manejar las repeticiones de la parte recursiva:  **PredicadoP -> Conjuncion Predicado2 PredicadoP | ε**
 * **Predicado-> Verbo Complemento** y **Predicado -> Verbo Adjetivo** causan ambiguedad:
-1. Modifico a : **Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP**
-2. Modifico **Complemento -> Sustantivo ComplementoP** **ComplementoP -> Conjuncion Complemento2 ComplementoP |** **Complemento2 -> Adjetivo**
+  1. Modifico a : **Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP**
 
 Para **Complemento → Sustantivo | Adjetivo | Complemento Conjunción Complemento2**
 1. Separamos la recursión izquierda reescribiendo la regla con un inicio fijo seguido de un nuevo no terminal: **Complemento ->  Sustantivo ComplementoP** 
 2.Creamos una nueva regla para manejar las repeticiones de la parte recursiva:  **ComplementoP -> Conjuncion Complemento2 ComplementoP | ε**
+* Pare evitar ambiguedades se elimina Adjetivo de Complemento y Sustantivo de Complemento2
+  1. **Complemento -> Sustantivo ComplementoP**, **ComplementoP -> Conjuncion Complemento2 ComplementoP |** y **Complemento2 -> Adjetivo**
 
 Para **Sujeto -> Articulo Sustantivo | Sujeto Conjuncion Sujeto2**
 1. Separamos la recursión izquierda reescribiendo la regla con un inicio fijo seguido de un nuevo no terminal: **Sujeto -> Pronombre Sustantivo SujetoP** 
