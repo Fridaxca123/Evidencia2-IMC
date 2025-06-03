@@ -181,11 +181,13 @@ Para probar mi gramatica implemente python usando nltk.CFG (para definir gramati
 **Correctas**
 * i cani e i gatti e gli elefanti corrono
 ![Gramatica Inicia](/prueba1.png)
-<img src="/prueba1.png" width="150" alt="Gramatica Inicia"> 
+<img src="/prueba1.png" width="150" alt="Gramatica Inicia">
 * gli elefanti saltano spesso
 ![Gramatica Inicia](/prueba2.png)
+<img src="/prueba2.png" width="150" alt="Gramatica Inicia">
 * i bambini saltano"
 ![Gramatica Inicia](/prueba3.png)
+<img src="/prueba3.png" width="150" alt="Gramatica Inicia">
 * le mele sono grandi
 ![Gramatica Inicia](/prueba4.png)
 * i fiori corrono veloci e sono belli
@@ -199,9 +201,6 @@ Para probar mi gramatica implemente python usando nltk.CFG (para definir gramati
 * i cani corrono veloci e
 ![Gramatica Inicia](/prueba6.png)
 
-![Gramatica Inicia](/gramatica1.png)
-
-![Gramatica Inicia](/gramatica2.png)
 
 ## Jerarquia Chomsky
 La jerarquía de Chomsky fue propuesta por el lingüista y científico computacional Noam Chomsky en 1956 con el propósito de clasificar las gramáticas formales según su capacidad expresiva, es decir, según el tipo de lenguajes que pueden generar.
