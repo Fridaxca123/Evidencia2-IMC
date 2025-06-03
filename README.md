@@ -180,8 +180,8 @@ Para probar mi gramatica implemente python usando nltk.CFG (para definir gramati
 
 **Correctas**
 * i cani e i gatti e gli elefanti corrono
-![Gramatica Inicia](/prueba1.png)
 <img src="/prueba1.png" width="400" alt="Gramatica Inicia">
+![Gramatica Inicia](/prueba1.png)
 * gli elefanti saltano spesso
 ![Gramatica Inicia](/prueba2.png)
 <img src="/prueba2.png" width="400" alt="Gramatica Inicia">
