@@ -1,17 +1,16 @@
 # Evidencia2-IMC: Generación y limpieza de gramática
 **Frida Xcaret Vargas Trejo - A01707168**
 ## Descripción
-EL italiano es una lengua romance procedente del latín hablado, pertenece a la familia de las lenguas Indo-Europeas. Es el idioma oficial en Italia, Vaticano y San Marino. Se calcula que, en el año 2006, unos 64 millones de ciudadanos europeos hablaban el italiano como lengua materna, y 14,7 millones como segunda o tercera lengua. 
+El lenguaje con el que estare trabajando durante esta entrega es el italiano, el cual ess una lengua romance procedente del latín hablado, pertenece a la familia de las lenguas Indo-Europeas. Es el idioma oficial en Italia, Vaticano y San Marino. Se calcula que, en el año 2006, unos 64 millones de ciudadanos europeos hablaban el italiano como lengua materna, y 14,7 millones como segunda o tercera lengua. 
 
 ## Estructura
-Para mi modelo estare utilizando la estructura basica del idioma **articulo + sustantivo + verbo + predicado**, tambien se podran usar conjunciónes para alargar las oraciones. El italiano se distingue por como el español tener distintas conjugaciones, donde los pronombres, sustantivos y verbos deben coincidir en género (masculino o femenino) y número (singular o plural). Para esta gramatica estare implementando oraciones con una estuctura basica con sujeto plural. 
+Para mi modelo estare utilizando la estructura basica del idioma **articulo + sustantivo + verbo + predicado (adverbio, conjunción, adjetivo)**. El italiano se distingue por, al igual, español tener distintas conjugaciones, donde los pronombres, sustantivos y verbos deben coincidir en género (masculino o femenino) y número (singular o plural).Con fines de facilitar la gramatica estare usando oraciónes en plural. Para los articulos i y gli son para el masculino plural y le para el femenino plural. Los sustantivos que tienen terminacion en i son masculinos (a excepcion de mani) y aquellos que tienen terminacion en e son femenininos.
 
-Ejemplo: La donna legge un libro 
-* Articulo: La
-* Sustantivo: donna 
-* Verbo: legge 
-* Predicado: un libro
-* Plural: Le donne leggono un libro
+Ejemplo: Le mele sono grandi.
+* Articulo: Le
+* Sustantivo: mele
+* Verbo: sono 
+* Predicado: grandi
 
 ## Modelo 
 
@@ -52,10 +51,10 @@ Ejemplo: La donna legge un libro
 * e: y
 
 ## Gramatica
-La gramática en teoría de la computación es un sistema que define cómo se forman las cadenas de un lenguaje. Sirve para verificar si las oraciones están bien construidas y es la base para analizar lenguajes de programación y naturales. El análisis sintáctico (o parsing) de ntax es la segunda fase, después del análisis léxico. Comprueba la estructura sintáctica de la entrada, es decir, si esta tiene la sintaxis correcta (del lenguaje en el que se escribió). Estare implementando el análisis con un parser LL(1)  que es una técnica utilizada en compiladores para analizar la estructura gramatical de una cadena de entrada (como el código fuente de un programa), siguiendo una gramática libre de contexto.
+La gramática es un sistema formal que define un conjunto de reglas para generar cadenas válidas dentro de un lenguaje. Sirve como modelo para construir oraciones sintácticamente correctas o secuencias con significado en un lenguaje formal. El parser o analisis sintaxico es el segundo paso después del analisis lexico, checa la estractura sintactica de la entrada. Su principal objetivo es crear un arbol sintaxico, una representación del codigo que refleja la estructura gramatical. Hay 3 tipos de parser LL, LR y LL(1). **Durante esta entrega estar implementando el parser LL1** (Left Left Look Ahead), que es un parser deterministico, que requiere que no exista embiguedada, noi recursion a la izquierda.
 
 **Gramatica Inicial:** 
-Mi gramatica inicial es capaz de producir oraciónes para sujetos en plural. Con fines de una gramatica efectiva  la estuctura base sera **Articulo + Sutantivo + Predicado** (Este por lo general es un verbo + (adjetivo, adverbio, complemento)). La gramatica puede producir oraciones mas complejas debido a que también se permiten las conjunciones permitiendo oraciónes como: **i cani e i gatti e gli elefanti corrono** (contien 3 sujetos) o **i fiori corrono veloci e sono belli** (contiene dos verbos con su respectivo adjetivo). 
+Mi gramatica inicial es capaz de producir oraciónes para sujetos en plural. Con fines de una gramatica efectiva la estuctura base sera **Articulo + Sutantivo + Predicado** (Este por lo general es un verbo + (adjetivo, adverbio) **+ Complemento**. La gramatica puede producir oraciones mas complejas debido a que también se permiten las conjunciones permitiendo oraciónes como: **i cani e i gatti e gli elefanti corrono** (contien 3 sujetos) o **i fiori corrono veloci e sono belli** (contiene dos verbos con su respectivo adjetivo). 
 
 ```
 Oración → Oración Conjunción | Sujeto Predicado| Oración Adverbio
