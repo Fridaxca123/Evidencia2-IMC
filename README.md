@@ -109,19 +109,25 @@ Para **Complemento → Complemento Conjunción Complemento**
 2. Indico precedencia  **Complemento2 ->  Adjetivo**
 
 ```
-Oracion -> Oracion Conjuncion | Sujeto Predicado | Oracion Adverbio
-                
-Predicado -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio | Predicado Conjuncion Predicado2
-   
-Predicado2 -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio 
+Oracion -> Sujeto Predicado 
                            
-Complemento → Sustantivo | Adjetivo | Complemento Conjunción Complemento2
+Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP
                            
-Complemento2 -> Sustantivo | Adjetivo 
-                           
-Sujeto -> Articulo Sustantivo | Sujeto Conjuncion Sujeto2               
+PredicadoP -> Conjuncion Predicado2 PredicadoP | 
 
-Sujeto2 -> Articulo Sustantivo 
+Predicado2 -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio
+
+Complemento -> Sustantivo ComplementoP
+                           
+ComplementoP -> Conjuncion Complemento2 ComplementoP | 
+
+Complemento2 -> Adjetivo
+
+Sujeto -> Articulo Sustantivo SujetoP
+                           
+SujetoP -> Conjuncion Sujeto2 | 
+
+Sujeto2 -> Articulo Sustantivo
 ```
 ## Eliminar la recursion izquierda
 Mi gramatica tambien cuenta con recursion a la izquierda, la recursión a la izquierda se presenta cuando una regla esta seguida por el mismo no terminal:  S ⇒ S | a | b, esto no es deseabe ya que puede causar un loop infinito. Por ejemplo en mi gramatica la recursion se presenta en **Oracion -> Oracion Conjuncion Oracion2 | Sujeto Predicado | Oracion Adverbio**, ya que esta permitiendo que un no terminal (Oracion) se derive a si mismo. Para eliminar la recursión por la izquierda, necesitamos deshacernos de las aquellos no terminales que se derivan a si mismos utilize el siguiente proceso :  
