@@ -13,7 +13,9 @@ Ejemplo: Le mele sono grandi.
 * Predicado: grandi
 
 ## Modelo 
+![Gramatica Inicia](/modelo.png)
 
+Etse modelo nos muestra el arbol 
 **Articulo**
 * le 
 * gli
