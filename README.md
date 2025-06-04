@@ -162,8 +162,6 @@ Para **Sujeto -> Articulo Sustantivo | Sujeto Conjuncion Sujeto2**
 ```
 Oracion -> Sujeto Predicado 
                            
-OracionP -> Conjuncion OracionP|  Adverbio OracionP |
-
 Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP
                            
 PredicadoP -> Conjuncion Predicado2 PredicadoP | 
@@ -178,7 +176,7 @@ Complemento2 -> Adjetivo
 
 Sujeto -> Articulo Sustantivo SujetoP
                            
-SujetoP -> Conjuncion Sujeto2 SujetoP | 
+SujetoP -> Conjuncion Sujeto2 | 
 
 Sujeto2 -> Articulo Sustantivo
 ```
