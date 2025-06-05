@@ -4,11 +4,15 @@ from nltk import CFG
 gramatica = CFG.fromstring("""
 Oracion -> Sujeto Predicado                         
 
-Predicado -> Verbo PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP
+Predicado -> Verbo Aux1
+
+Aux1 -> PredicadoP | Adjetivo PredicadoP | Adverbio PredicadoP
                            
 PredicadoP -> Conjuncion Predicado2 PredicadoP | 
 
-Predicado2 ->  Verbo Adjetivo | Verbo Adverbio
+Predicado2 ->  Verbo Aux2
+
+Aux2 ->  Adjetivo | Adverbio
                            
 Sujeto -> Articulo Sustantivo SujetoP
                            
