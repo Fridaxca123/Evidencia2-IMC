@@ -137,19 +137,19 @@ Para **Sujeto -> Articulo Sustantivo | Sujeto Conjuncion Sujeto2**
 3. SujetoP -> Conjuncion Sujeto2 SujetoP | ε
 
 ```
-Oracion -> Sujeto Predicado
-                
-Predicado -> Verbo PredicadoP | Verbo Adjetivo PredicadoP| Verbo Adverbio PredicadoP
+Oracion -> Sujeto Predicado                         
 
-Predicado2 -> Verbo Adjetivo | Verbo Adverbio 
-
-PredicadoP -> Conjuncion Predicado2 PredicadoP | ε
+Predicado -> Verbo PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP
                            
-Sujeto -> Articulo Sustantivo SujetoP                
+PredicadoP -> Conjuncion Predicado2 PredicadoP | ε
 
-Sujeto2 -> Articulo Sustantivo 
-
+Predicado2 ->  Verbo Adjetivo | Verbo Adverbio
+                           
+Sujeto -> Articulo Sustantivo SujetoP
+                           
 SujetoP -> Conjuncion Sujeto2 SujetoP | ε
+
+Sujeto2 -> Articulo Sustantivo
 ```
 ## Pruebas 
 Para probar mi gramatica implemente python usando nltk.CFG (para definir gramaticas libres de contexto)y nltk.ChartParser(para analizar las oraciones). Para probar el programa descargue el archivo **recursion.py** y corralo. 
