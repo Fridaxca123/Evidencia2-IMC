@@ -61,7 +61,7 @@ for oracion in oraciones:
     if trees:
         print(f" Árboles generados: {len(trees)}")
         for i, tree in enumerate(trees, 1):
-            marcar_epsilon(tree)  # Agrega (ε) en nodos vacíos
+            marcar_epsilon(tree)  
             print(f"\nÁrbol {i}:")
             tree.pretty_print()
     else:
