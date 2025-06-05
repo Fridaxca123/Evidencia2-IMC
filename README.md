@@ -13,9 +13,11 @@ Ejemplo: Le mele sono grandi.
 * Predicado: grandi
 
 ## Modelo 
-![Gramatica Inicia](/modelo.png)
 
-Etse modelo nos muestra el arbol 
+![Gramatica Inicia](/modelo.png)        
+
+Etse modelo nos muestra el arbol para la gramatica final después de que se elimino la ambuiguedad y la recursion a la izquierda.
+
 **Articulo**
 * le 
 * gli
@@ -184,7 +186,7 @@ La gramatica antes pasar por LL1 (eliminar recursion izquierda y ambiguedad) y d
 No podria ser regular debido debido a que reglas como Predicado → Verbo Adverbio PredicadoP implica que la gramática necesita procesar estructuras anidadas, algo que las gramáticas regulares no pueden modelar.
 
 ## Complejidad 
-Tomando en cuenta que nuestra gramatica es de tipo libre de contexto la complejidad para este tipo de gramaticas es O(n³). Ademas se esta empleando en el codigo ChartParser de NLTK, que implementa el algoritmo de Earley. Aunque en el peor de los casos este algoritmo puede tener una complejidad de O(n³), en la práctica, nuestra gramática ha sido diseñada para ser no ambigua y determinista, lo que reduce la complejidad esperada a un comportamiento cercano a O(n) en la mayoría de los casos.
+Tomando en cuenta que nuestra gramatica es de tipo libre de contexto la complejidad para este tipo de gramaticas la complejidad de tiempo O(n³). Ademas se esta empleando en el codigo ChartParser de NLTK, que implementa el algoritmo de Earley que en el peor de los casos puede tener una complejidad de O(n^3). En cuanto a la complejidad de espacio el peor caso es O(n^2) ya que el algoritmos de Earley requiere almacenar una tabla de posibles derivaciones.
 
 ## Referencias
 - C. (2003, September 15). *Lengua romance*. Wikipedia.org; Wikimedia Foundation, Inc. [https://es.wikipedia.org/wiki/Idioma_italiano](https://es.wikipedia.org/wiki/Idioma_italiano)
