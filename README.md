@@ -181,7 +181,6 @@ La primera prueba que lleve a cabo fue en el simulador [https://www.cs.princeton
 
 ![Gramatica Inicia](/prueba3.png)
 ![Gramatica Inicia](/prueba4.png)
-![Gramatica Inicia](/prueba5.png)
 
 También probe mi gramatica en python usando nltk.CFG (para definir gramaticas libres de contexto)y nltk.ChartParser(para analizar las oraciones). Para probar el programa descargue el archivo **recursion.py** y corralo. 
 
