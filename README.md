@@ -53,15 +53,15 @@ Etse modelo nos muestra el arbol
 * e: y
 
 ## Gramatica
-La gramática es un sistema formal que define un conjunto de reglas para generar cadenas válidas dentro de un lenguaje. Sirve como modelo para construir oraciones sintácticamente correctas o secuencias con significado en un lenguaje formal. El parser o analisis sintaxico es el segundo paso después del analisis lexico, checa la estractura sintactica de la entrada. Su principal objetivo es crear un arbol sintaxico, una representación del codigo que refleja la estructura gramatical. Hay 3 tipos de parser LL, LR y LL(1). **Durante esta entrega estar implementando el parser LL1** (Left Left Look Ahead), que es un parser deterministico, que requiere que no exista embiguedada, noi recursion a la izquierda.
+La gramática es un sistema formal que define un conjunto de reglas para generar cadenas válidas dentro de un lenguaje. Sirve como modelo para construir oraciones sintácticamente correctas o secuencias con significado en un lenguaje formal. El parser o analisis sintaxico es el segundo paso después del analisis lexico, checa la estractura sintactica de la entrada. Su principal objetivo es crear un arbol sintaxico, una representación del codigo que refleja la estructura gramatical. Para poder llevar a cabo un parser primero  **implementare LL1** (Left Left Look Ahead), con el proposito de eliminar la ambiguedad y la recursion a la izquierda.
 
 **Gramatica Inicial:** 
 Mi gramatica inicial es capaz de producir oraciónes para sujetos en plural. Con fines de una gramatica efectiva la estuctura base sera **Articulo + Sutantivo + Predicado** (Este por lo general es un verbo + (adjetivo, adverbio) **+ Complemento**. La gramatica puede producir oraciones mas complejas debido a que también se permiten las conjunciones permitiendo oraciónes como: **i cani e i gatti e gli elefanti corrono** (contien 3 sujetos) o **i fiori corrono veloci e sono belli** (contiene dos verbos con su respectivo adjetivo). 
 
 ```
-Oración → Oración Conjunción | Sujeto Predicado| Oración Adverbio
+Oración → Sujeto Predicado
                 
-Predicado → Verbo Complemento | Verbo Adjetivo| Verbo Adverbio| Predicado Conjunción Predicado
+Predicado →Verbo | Verbo Complemento | Verbo Adjetivo| Verbo Adverbio| Predicado Conjunción Predicado
    
 Complemento → Sustantivo | Adjetivo | Complemento Conjunción Complemento
 
@@ -80,13 +80,9 @@ Adjetivo → 'grandi' | 'veloci' | 'belli'
 Conjunción → 'e' | 'o'
 ```
 ## Eliminar la ambiguedad
-Esta gramatica cuenta con ambiguedad lo que hace que exista mas de una manera de implementacion creando asi mas de un arbol. Por ejemplo como para la oración "i cani e i gatti e gli elefanti corrono" (el elefante, el gato y el perro corren) se crean dos arboles. Esto sucede igualmente con otras oraciones. 
+Actualmente mi gramatica cuenta con ambiguedad, esta surge cuando un string puede ser implementado por mas de un arbol **E-> E + E | E * E | id** . En mi gramatica un ejemplo de ambiguedad esta en **Sujeto → Sujeto Conjunción Sujeto**  permite agrupar los sujetos de mas de una forma (i cani e i gatti) e gli elefanti - i cani e (i gatti e gli elefanti). 
 
-![Gramatica Inicia](/gramaticaInicial.png)
-
-La ambiguedad surge cuando un string puede ser implementado por mas de un arbol **E-> E + E | E * E | id** . En este caso se esta causando ambiguedad en la linea **Sujeto → Sujeto Conjunción Sujeto**  permite agrupar los sujetos de mas de una forma (i cani e i gatti) e gli elefanti - i cani e (i gatti e gli elefanti). Lo anterior también se puede observar en la imagen la cual muestra dos arboles con implementacion distinta para el mismo string. 
-
-Para eliminar la ambigüedad, usare  estados intermedios y producciones que indican una precedencia en cada línea que se llama a sí misma dos veces en la misma reglas. Basandome en la bibliografía:
+Para eliminar la ambigüedad, se deben usar  estados intermedios y producciones que indiquen una precedencia en cada línea que se llama a sí misma dos veces en la misma reglas. Basandome en la bibliografía:
 
 E → E + T | T 
 
@@ -96,11 +92,11 @@ F → id
 
 Para **Sujeto → Sujeto Conjunción Sujeto** 
 
-1. Creo un estado intermedio llamado Sujeto2 y lo coloco al final evitando que exita dos Sujeto **Sujeto → Articulo Sustantivo | Sujeto Conjunción Sujeto2**
+1. Creo un estado intermedio llamado Sujeto2 y lo coloco al final evitando que exita dos posibles caminos para Sujeto **Sujeto → Articulo Sustantivo | Sujeto Conjunción Sujeto2**
 2. El Sujeto2 solo puede ser articulo + sustantivo **Sujeto2 → Articulo Sustantivo**
 
 Para **Predicado → Predicado Conjunción Predicado**
-1. Creo un estado intermedio llamado Predicado2 y lo coloco al final evitando que exitan dos Predicado **Predicado -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio | Predicado Conjuncion Predicado2**
+1. Creo un estado intermedio llamado Predicado2 y lo coloco al final evitando que exitan dos posibles caminos Predicado **Predicado -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio | Predicado Conjuncion Predicado2**
 2. Indico precedencia **Predicado2 -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio**
 
 
@@ -109,51 +105,45 @@ Para **Complemento → Complemento Conjunción Complemento**
 2. Indico precedencia  **Complemento2 ->  Adjetivo**
 
 ```
-Oracion -> Sujeto Predicado 
+Oracion -> Sujeto Predicado
+                
+Predicado -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio | Predicado Conjuncion Predicado2
+   
+Predicado2 -> Verbo Complemento | Verbo Adjetivo | Verbo Adverbio 
                            
-Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP
+Complemento → Sustantivo | Adjetivo | Complemento Conjunción Complemento2
                            
-PredicadoP -> Conjuncion Predicado2 PredicadoP | 
-
-Predicado2 -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio
-
-Complemento -> Sustantivo ComplementoP
+Complemento2 -> Sustantivo | Adjetivo 
                            
-ComplementoP -> Conjuncion Complemento2 ComplementoP | 
+Sujeto -> Articulo Sustantivo | Sujeto Conjuncion Sujeto2               
 
-Complemento2 -> Adjetivo
-
-Sujeto -> Articulo Sustantivo SujetoP
-                           
-SujetoP -> Conjuncion Sujeto2 | 
-
-Sujeto2 -> Articulo Sustantivo
+Sujeto2 -> Articulo Sustantivo 
 ```
 ## Eliminar la recursion izquierda
-Mi gramatica tambien cuenta con recursion a la izquierda, la recursión a la izquierda se presenta cuando una regla esta seguida por el mismo no terminal:  S ⇒ S | a | b, esto no es deseabe ya que puede causar un loop infinito. Por ejemplo en mi gramatica la recursion se presenta en **Oracion -> Oracion Conjuncion Oracion2 | Sujeto Predicado | Oracion Adverbio**, ya que esta permitiendo que un no terminal (Oracion) se derive a si mismo. Para eliminar la recursión por la izquierda, necesitamos deshacernos de las aquellos no terminales que se derivan a si mismos utilize el siguiente proceso :  
+Mi gramatica tambien cuenta con recursion a la izquierda, la recursión a la izquierda se presenta cuando una regla esta seguida por el mismo no terminal:  S ⇒ S | a | b, esto no es deseable ya que puede causar un loop infinito. Por ejemplo en mi gramatica la recursion se presenta en **Predicado -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio | Predicado Conjuncion Predicado2**, ya que esta permitiendo que un no terminal (Predicado) se derive a si mismo. Para eliminar la recursión por la izquierda, en base a la bibliografía eliminaremos los no terminales que se derivan a si mismos utilize el siguiente proceso :  
 
 **S ⇒ S a | S b | c | d**
 
 **S ⇒ cS' | dS'**
 
 **S' ⇒ ε | aS' | bS'**
-
-Para **Oracion -> Oracion Conjuncion | Sujeto Predicado | Oracion Adverbio**
-1. Separamos la recursión izquierda reescribiendo la regla con un inicio fijo  seguido de un nuevo no terminal **Oracion -> Sujeto Predicado OracionP** 
-2. Creamos una nueva regla para manejar las repeticiones de la parte recursiva: **OracionP -> Conjuncion Oracion2 OracionP| Adverbio OracionP| ε**
-* Elimine el adverbio de arriba de Oracion y el Sujeto de OracionP para evitar ambiguedades. 
-
+ 
 Para **Predicado -> Verbo | Verbo Complemento | Verbo Adjetivo | Verbo Adverbio | Predicado Conjuncion Predicado2**
-1. Separamos la recursión izquierda reescribiendo la regla con un inicio fijo (como Verbo, Verbo Complemento, etc.) seguido de un nuevo no terminal: **Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP** 
-2.Creamos una nueva regla para manejar las repeticiones de la parte recursiva:  **PredicadoP -> Conjuncion Predicado2 PredicadoP | ε**
-* **Predicado-> Verbo Complemento** y **Predicado -> Verbo Adjetivo** causan ambiguedad:
-  1. Modifico a : **Predicado -> Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP**
+1. Creamos una nueva regla:
+PredicadoP -> 
+2. Eliminamos el no terminal que se repite y agregamos PredicadoP final de cada no terminal:
+**Predicado ->Verbo PredicadoP | Verbo Complemento PredicadoP | Verbo Adjetivo PredicadoP| Verbo Adverbio PredicadoP**
+3. Incluimos en la nueva regla el no terminal que eliminamos de la regla anterior, renombrando el que se repetia y pansandolo al final, incluimos un nulo: 
+**PredicadoP -> Conjuncion Predicado2 PredicadoP | ε**
 
 Para **Complemento → Sustantivo | Adjetivo | Complemento Conjunción Complemento2**
-1. Separamos la recursión izquierda reescribiendo la regla con un inicio fijo seguido de un nuevo no terminal: **Complemento ->  Sustantivo ComplementoP** 
-2.Creamos una nueva regla para manejar las repeticiones de la parte recursiva:  **ComplementoP -> Conjuncion Complemento2 ComplementoP | ε**
-* Pare evitar ambiguedades se elimina Adjetivo de Complemento y Sustantivo de Complemento2
-  1. **Complemento -> Sustantivo ComplementoP**, **ComplementoP -> Conjuncion Complemento2 ComplementoP |** y **Complemento2 -> Adjetivo**
+1. Complemento ->
+2. **Complemento → Sustantivo ComplementoP | Adjetivo ComplementoP**
+3. **ComplementoP → Conjunción Complemento2  ComplementoP | ε** 
+* Pare evitar ambiguedades se elimina elimino Adjetivo de Complemento → Sustantivo ComplementoP | Adjetivo ComplementoP
+  Complemento → Sustantivo ComplementoP
+* Pare evitar ambiguedades se elimina elimino Sustantivo de Complemento2 -> Sustantivo | Adjetivo 
+  Complemento2 -> Adjetivo 
 
 Para **Sujeto -> Articulo Sustantivo | Sujeto Conjuncion Sujeto2**
 1. Separamos la recursión izquierda reescribiendo la regla con un inicio fijo seguido de un nuevo no terminal: **Sujeto -> Pronombre Sustantivo SujetoP** 
