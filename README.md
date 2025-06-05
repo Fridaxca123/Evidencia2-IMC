@@ -154,7 +154,13 @@ SujetoP -> Conjuncion Sujeto2 SujetoP | ε
 Sujeto2 -> Articulo Sustantivo
 ```
 ## Pruebas 
-Para probar mi gramatica implemente python usando nltk.CFG (para definir gramaticas libres de contexto)y nltk.ChartParser(para analizar las oraciones). Para probar el programa descargue el archivo **recursion.py** y corralo. 
+La primera prueba que lleve a cabo fue en el simulador [https://www.cs.princeton.edu/courses/archive/spring20/cos320/LL1/?] donde me genero una First and Follow table y una transition table, probando que mi gramatica si es valida.
+
+![Gramatica Inicia](/prueba3.png)
+![Gramatica Inicia](/prueba4.png)
+![Gramatica Inicia](/prueba5.png)
+
+También probe mi gramatica en python usando nltk.CFG (para definir gramaticas libres de contexto)y nltk.ChartParser(para analizar las oraciones). Para probar el programa descargue el archivo **recursion.py** y corralo. 
 
 **Correctas**
 * i cani e i gatti e gli elefanti corrono
