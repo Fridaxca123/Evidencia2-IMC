@@ -163,7 +163,7 @@ Predicado -> Verbo Aux1
 
 Aux1 -> PredicadoP | Adjetivo PredicadoP | Adverbio PredicadoP
                            
-PredicadoP -> Conjuncion Predicado2 PredicadoP | 
+PredicadoP -> Conjuncion Predicado2 PredicadoP | ε
 
 Predicado2 ->  Verbo Aux2
 
@@ -171,7 +171,7 @@ Aux2 ->  Adjetivo | Adverbio
                            
 Sujeto -> Articulo Sustantivo SujetoP
                            
-SujetoP -> Conjuncion Sujeto2 SujetoP | 
+SujetoP -> Conjuncion Sujeto2 SujetoP | ε
 
 Sujeto2 -> Articulo Sustantivo
 ```
