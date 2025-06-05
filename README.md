@@ -156,24 +156,10 @@ Para probar mi gramatica implemente python usando nltk.CFG (para definir gramati
 
 **Correctas**
 * i cani e i gatti e gli elefanti corrono
-
-![Gramatica Inicia](/prueba1.png)
-
 * gli elefanti saltano spesso
-
-![Gramatica Inicia](/prueba2.png)
-
 * i bambini saltano
-
-![Gramatica Inicia](/prueba3.png)
-
 * le mele sono grandi
-  
-![Gramatica Inicia](/prueba4.png)
-
 * i fiori corrono veloci e sono belli
-
-![Gramatica Inicia](/prueba5.png)
 
 **Incorrectas**
 * corrono i cani
@@ -182,21 +168,23 @@ Para probar mi gramatica implemente python usando nltk.CFG (para definir gramati
 * e i cani corrono
 * i cani corrono veloci e
   
-![Gramatica Inicia](/prueba6.png)
+![Gramatica Inicia](/prueba1.png)
 
 
 ## Jerarquia Chomsky
 La jerarquía de Chomsky fue propuesta por el lingüista y científico computacional Noam Chomsky en 1956 con el propósito de clasificar las gramáticas formales según su capacidad expresiva, es decir, según el tipo de lenguajes que pueden generar.
 
-Esta jerarquía tiene cuatro niveles, desde los más generales (más poderosos, pero menos estructurados) hasta los más restringidos (más estructurados, pero con menor poder expresivo). 
+Esta jerarquía tiene cuatro niveles, desde los más generales (más poderosos, pero menos estructurados) hasta los más restringidos (más estructurados, pero con menor poder expresivo). Los cuatro tipos son: sin restriccions, sensible al contexto, libre de contexto y regulares.
 
-La gramatica antes de eliminar (recursion izquierda y ambiguedad) y después  es de **tipo 2**, es decir una gramatica libre de contexto. Todos tienen un único no terminal en el lado izquierdo y no dependen del contexto en el que aparece ese símbolo para aplicarse. Cada producción tiene la forma A → α, donde A es un no terminal y α es una cadena de terminales y no terminales. 
+La gramatica antes pasar por LL1 (eliminar recursion izquierda y ambiguedad) y después es de **tipo libre de contexto**, es decir una gramatica libre de contexto debido a que: 
+- Cada producción tiene la forma A → α, donde A es un no terminal y α es una cadena de terminales y no terminales.
+- Todas las producciones tienen un solo no terminal en el lado izquierdo.
+- El lado derecho puede ser cualquier cadena de terminales y no terminales (incluyendo ε).
+
+No podria ser regular debido debido a que reglas como Predicado → Verbo Adverbio PredicadoP implica que la gramática necesita procesar estructuras anidadas, algo que las gramáticas regulares no pueden modelar.
 
 ## Complejidad 
-La implementación de nuestro analizador gramatical tiene una complejidad temporal aproximada de O(n), donde n es la longitud de la entrada. Los principales factores que determinan esta complejidad son los siguientes:
-* Tokenización: Este proceso implica recorrer la oración una vez para dividirla en tokens, lo que conlleva una complejidad de O(n).
-* Análisis sintáctico: Utilizamos el ChartParser de NLTK, que implementa el algoritmo de Earley. Aunque en el peor de los casos este algoritmo puede tener una complejidad de O(n³), en la práctica, nuestra gramática ha sido diseñada para ser no ambigua y determinista, lo que reduce la complejidad esperada a un comportamiento cercano a O(n) en la mayoría de los casos.
-* Casos de prueba: Cada oración de prueba se procesa de forma independiente, por lo que el análisis de m oraciones tiene una complejidad total de O(m), asumiendo que cada oración tiene una longitud acotada.
+Tomando en cuenta que nuestra gramatica es de tipo libre de contexto la complejidad para este tipo de gramaticas es O(n³). Ademas se esta empleando en el codigo ChartParser de NLTK, que implementa el algoritmo de Earley. Aunque en el peor de los casos este algoritmo puede tener una complejidad de O(n³), en la práctica, nuestra gramática ha sido diseñada para ser no ambigua y determinista, lo que reduce la complejidad esperada a un comportamiento cercano a O(n) en la mayoría de los casos.
 
 ## Referencias
 - C. (2003, September 15). *Lengua romance*. Wikipedia.org; Wikimedia Foundation, Inc. [https://es.wikipedia.org/wiki/Idioma_italiano](https://es.wikipedia.org/wiki/Idioma_italiano)
