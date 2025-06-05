@@ -153,7 +153,7 @@ SujetoP -> Conjuncion Sujeto2 SujetoP | ε
 
 Sujeto2 -> Articulo Sustantivo
 ```
-## Eliminar la ambiguedad
+## Gramatica final
 Mi gramatica aun cuenta con ambiguedad en Predicado -> Verbo PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP  y Predicado2 ->  Verbo Adjetivo | Verbo Adverbio, ya que cumple con la forma E-> E + E | E * E | id que muestra que mas de un arbol podria ser implementado. Al probar la gramatica anterior en python esta ya era aceptada pero en el simulador de LL1 me indicaba error. Para solucionar esto cree un estado intemedio llamado auxiliar para que el predicado solo maneje el verbo y asi solo exista un posible "camino". 
 
 ```
