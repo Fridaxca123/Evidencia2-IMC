@@ -153,6 +153,29 @@ SujetoP -> Conjuncion Sujeto2 SujetoP | ε
 
 Sujeto2 -> Articulo Sustantivo
 ```
+## Eliminar la ambiguedad
+Mi gramatica aun cuenta con ambiguedad en Predicado -> Verbo PredicadoP | Verbo Adjetivo PredicadoP | Verbo Adverbio PredicadoP  y Predicado2 ->  Verbo Adjetivo | Verbo Adverbio, ya que cumple con la forma E-> E + E | E * E | id que muestra que mas de un arbol podria ser implementado. Al probar la gramatica anterior en python esta ya era aceptada pero en el simulador de LL1 me indicaba error. Para solucionar esto cree un estado intemedio llamado auxiliar para que el predicado solo maneje el verbo y asi solo exista un posible "camino". 
+
+```
+Oracion -> Sujeto Predicado                         
+
+Predicado -> Verbo Aux1
+
+Aux1 -> PredicadoP | Adjetivo PredicadoP | Adverbio PredicadoP
+                           
+PredicadoP -> Conjuncion Predicado2 PredicadoP | 
+
+Predicado2 ->  Verbo Aux2
+
+Aux2 ->  Adjetivo | Adverbio
+                           
+Sujeto -> Articulo Sustantivo SujetoP
+                           
+SujetoP -> Conjuncion Sujeto2 SujetoP | 
+
+Sujeto2 -> Articulo Sustantivo
+```
+
 ## Pruebas 
 La primera prueba que lleve a cabo fue en el simulador [https://www.cs.princeton.edu/courses/archive/spring20/cos320/LL1/?] donde me genero una First and Follow table y una transition table, probando que mi gramatica si es valida.
 
